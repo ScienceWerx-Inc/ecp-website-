@@ -1,0 +1,32 @@
+{
+  "index": {
+    "route": "/",
+    "title": "ECP Engineering | Engineered Construction Products, Ltd.",
+    "description": "Engineered Construction Products, Ltd. — structural engineering, general contracting, construction management and specialty product supply across Maryland, Washington DC and West Virginia since 1975.",
+    "themeColor": "#141619"
+  },
+  "about": {
+    "route": "/about",
+    "title": "About &amp; Directory | ECP Engineering",
+    "description": "Learn about Engineered Construction Products, Ltd. (ECP) — founded in 1975 in Frederick, MD, led by President Kurtis Barron, licensed across MD, DC, and WV.",
+    "themeColor": "#141619"
+  },
+  "services": {
+    "route": "/services",
+    "title": "Disciplines &amp; Capabilities | ECP Engineering",
+    "description": "Comprehensive structural engineering consulting, general contracting, construction management, and CSI Division 05, 06 & 08 specialty product supply by ECP Ltd.",
+    "themeColor": "#141619"
+  },
+  "projects": {
+    "route": "/projects",
+    "title": "Projects &amp; Markets | ECP Engineering",
+    "description": "Explore ECP Ltd.'s portfolio of over 2,500 commercial, civil, historic restoration, and institutional construction projects across Maryland, Washington DC, and West Virginia.",
+    "themeColor": "#141619"
+  },
+  "contact": {
+    "route": "/contact",
+    "title": "Contact &amp; Bid Desk | ECP Engineering",
+    "description": "Contact Engineered Construction Products, Ltd. (ECP) in Frederick, MD. Request a project quote, invite ECP to bid, or schedule a structural engineering review.",
+    "themeColor": "#141619"
+  }
+}
