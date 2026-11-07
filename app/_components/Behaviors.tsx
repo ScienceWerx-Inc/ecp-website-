@@ -71,7 +71,37 @@ export default function Behaviors() {
       }
     }
 
-    // 3. Project filtering
+    // 3. Contact form -> MoreWerx company-scoped lead intake (best-effort).
+    const contactForm = document.getElementById("ds")?.closest("form");
+    if (contactForm) {
+      const api = (process.env.NEXT_PUBLIC_MOREWERX_API || "").replace(/\/+$/, "");
+      const slug = process.env.NEXT_PUBLIC_ECP_SLUG || "ecp";
+      on(contactForm, "submit", () => {
+        if (!api) return; // nothing wired yet; inline handler still shows the ack
+        const val = (id: string) =>
+          (document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null)?.value?.trim() || "";
+        const name = `${val("fn")} ${val("ln")}`.trim();
+        const email = val("em");
+        if (!name || !email) return;
+        const location = val("lo");
+        const message = [location ? `Location: ${location}` : "", val("ds")].filter(Boolean).join("\n");
+        // fire-and-forget; the form's own handler shows the acknowledgement
+        void fetch(`${api}/api/public/site/${slug}/contact`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            phone: val("ph"),
+            companyName: val("co"),
+            message,
+            pageUrl: window.location.href,
+          }),
+        }).catch(() => {});
+      });
+    }
+
+    // 4. Project filtering
     const filterBtns = Array.prototype.slice.call(
       document.querySelectorAll(".filter-btn[data-filter]")
     ) as HTMLElement[];
