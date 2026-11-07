@@ -4,1584 +4,386 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Engineered Construction Products, Ltd. — structural engineering, general contracting, construction management and specialty product supply across Maryland, Washington DC and West Virginia since 1975.">
-<meta name="theme-color" content="#0B2447">
-<title>ECP Ltd. Blueprint Bureau</title>
+<meta name="theme-color" content="#141619">
+<title>ECP Engineering | Engineered Construction Products, Ltd.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300..700&display=swap">
-
-<style>
-/* ═══════════════════ TOKENS ═══════════════════ */
-:root {
-  /* ── Premium Light Mode Palette ── */
-  --paper: #F8FAFC;      /* Lightest Background */
-  --tint: #F1F5F9;       /* Elevated Background */
-  --panel: rgba(255, 255, 255, 0.7);  /* Glass Panels */
-  
-  --band: #0F172A;       /* Alternate Band (Keep dark for contrast in footer/some sections) */
-  --band-ink: #FFFFFF;
-  --band-ink-2: #94A3B8;
-  --band-ink-3: #475569;
-  --band-rule: rgba(255,255,255,0.1);
-
-  --ink: #0F172A;        /* Primary Text */
-  --body: #475569;       /* Body Text */
-  --muted: #64748B;      /* Muted Text */
-  
-  --rule: rgba(0,0,0,0.08); /* Frosted Borders */
-  --rule-2: rgba(0,0,0,0.12);
-  
-  --blue: #0EA5E9;       /* Cyan */
-  --blue-soft: #38BDF8;
-  
-  --red: #742C35;        /* Maroon */
-  --red-bright: #8F3642; /* Lighter Maroon */
-  --on-red: #FFFFFF;
-  
-  --field: rgba(0,0,0,0.03); /* Inputs */
-  
-  --ok: #059669;
-  --ok-line: #10B981;
-  --ok-bg: rgba(16, 185, 129, 0.1);
-
-  /* ── Glassmorphism Utilities ── */
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-blur: blur(24px);
-  --glass-border: 1px solid rgba(0,0,0,0.05);
-  --glass-border-hi: 1px solid rgba(0,0,0,0.1);
-  --glass-shadow: 0 16px 40px rgba(0,0,0,0.04);
-  --glow-copper: 0 0 20px rgba(116, 44, 53, 0.15);
-  --glow-blue: 0 0 20px rgba(14, 165, 233, 0.15);
-}
-
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--body);
-  font-family:"Outfit",-apple-system,sans-serif;
-  font-size:17px;line-height:1.62;
-  -webkit-font-smoothing:antialiased;
-}
-svg{display:block;max-width:100%}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--red-bright);outline-offset:3px}
-
-.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
-@media (max-width:640px){.wrap{padding:0 20px}}
-
-
-
-/* ── type roles ── */
-.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
-.eyebrow{
-  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;
-  letter-spacing:.19em;text-transform:uppercase;color:var(--red);
-  display:flex;align-items:center;gap:12px;margin:0 0 18px;
-}
-.eyebrow::before{content:"";width:34px;height:1px;background:var(--red);flex:0 0 auto}
-h1,h2,h3,h4{
-  font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
-  color:var(--ink);margin:0;letter-spacing:-.025em;text-wrap:balance;
-  font-weight:800;line-height:1.02;
-}
-h2{font-size:clamp(30px,4.1vw,52px)}
-h3{font-size:clamp(21px,2.2vw,27px);letter-spacing:-.02em;line-height:1.12}
-h4{font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
-p{margin:0 0 1.05em}
-.lede{font-size:18px;line-height:1.66;color:var(--body)}
-.sheet-no{
-  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.18em;
-  color:var(--muted);text-transform:uppercase;
-}
-
-/* ── section scaffold ── */
-section{padding:96px 0}
-@media (max-width:720px){section{padding:64px 0}}
-.sec-head{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);
-  gap:28px 64px;align-items:end;margin-bottom:52px;
-}
-@media (max-width:900px){.sec-head{grid-template-columns:1fr;align-items:start}}
-.sec-head p{margin:0;color:var(--muted);font-size:17px;line-height:1.6}
-
-/* ── buttons ── */
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
-  letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
-  padding:15px 26px;border:1px solid transparent;transition:all .3s cubic-bezier(0.16,1,0.3,1);
-  border-radius:8px;
-}
-.btn-primary{
-  background:var(--red-bright);color:var(--on-red);
-  box-shadow:0 6px 16px color-mix(in srgb,var(--red-bright) 30%,transparent);
-}
-.btn-primary:hover{
-  background:var(--red);transform:translateY(-2px);
-  box-shadow:0 8px 24px color-mix(in srgb,var(--red-bright) 45%,transparent);
-}
-.btn-ghost{border-color:var(--rule);color:var(--ink);background:transparent}
-.btn-ghost:hover{
-  border-color:var(--blue);color:var(--blue);
-  background:var(--tint);transform:translateY(-2px);
-}
-.on-band .btn-ghost{border-color:var(--band-rule);color:var(--band-ink)}
-.on-band .btn-ghost:hover{border-color:var(--band-ink-2)}
-
-/* ═══════════════════ HEADER ═══════════════════ */
-.topbar{
-  position:sticky;top:0;z-index:50;
-  background:color-mix(in srgb,var(--paper) 75%,transparent);
-  backdrop-filter:blur(16px) saturate(180%);
-  border-bottom:1px solid color-mix(in srgb,var(--rule) 50%,transparent);
-  box-shadow:0 4px 30px rgba(0,0,0,0.04);
-}
-.topbar .wrap{display:flex;align-items:center;gap:28px;height:74px}
-.brand{display:flex;flex-direction:column;line-height:1;text-decoration:none;margin-right:auto}
-.brand b{
-  font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:19px;
-  letter-spacing:-.02em;color:var(--ink);
-}
-.brand small{
-  font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.2em;
-  color:var(--red);margin-top:5px;
-}
-.mainnav{display:flex;gap:32px}
-.mainnav a{
-  font-family:"Outfit",sans-serif;font-size:15px;font-weight:600;
-  text-transform:capitalize;text-decoration:none;color:var(--ink);
-  padding:4px 0;border-bottom:2px solid transparent;transition:all .18s;
-}
-.mainnav a:hover, .mainnav a.active {
-  color:var(--red);border-bottom-color:var(--red);
-}
-.topbar .btn{padding:14px 24px;font-size:12px;border-radius:4px;box-shadow:none;}
-.topbar .btn:hover{transform:none;box-shadow:none;}
-
-
-/* ═══════════════════ HERO ═══════════════════ */
-.hero {
-  padding: 140px 0 180px;
-  border-bottom: 1px solid var(--rule);
-  position: relative;
-  background-color: var(--paper);
-  background-image: 
-    linear-gradient(to right, var(--paper) 0%, rgba(248,250,252,0.85) 40%, rgba(248,250,252,0.4) 100%),
-    url('hero_3d.jpg');
-  background-size: cover;
-  background-position: center right;
-}
-.hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center}
-@media (max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px}}
-.hero h1{font-size:clamp(52px,8vw,110px);line-height:.96;letter-spacing:-.04em;margin-top:16px;}
-.hero h1 em{font-style:normal;color:var(--red-bright)}
-.hero-sub{max-width:50ch;margin-top:26px;font-size:18px;line-height:1.6;color:var(--body);}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 0}
-.dimline{display:flex;align-items:center;gap:0;margin:30px 0 0;max-width:430px}
-.dimline .cap{
-  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.16em;
-  color:var(--blue-soft);white-space:nowrap;padding:0 10px;
-}
-.dimline .seg{flex:1;height:1px;background:var(--blue-soft);position:relative}
-.dimline .seg::before,.dimline .seg::after{
-  content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--blue-soft);
-}
-.dimline .seg::before{left:0}.dimline .seg::after{right:0}
-
-.hero-stats {
-  display: flex; flex-direction: column; gap: 24px;
-  margin-top: 0; justify-content: center;
-}
-.hstat {
-  padding: 32px; text-align: left;
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  border-radius: 16px; box-shadow: var(--glass-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.hstat:hover {
-  transform: translateX(-8px);
-  border-top-color: var(--red-bright);
-  box-shadow: var(--glow-copper);
-}
-@media (max-width: 768px) {
-  .hero-stats { padding: 0 24px; }
-}
-.hstat .n {
-  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800;
-  font-size: 52px; line-height: 1; color: var(--red-bright); letter-spacing: -.03em;
-}
-.hstat .l {
-  font-family: "Outfit", sans-serif; font-size: 14px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin: 8px 0;
-}
-.hstat p { margin: 0; font-size: 15px; color: var(--body); line-height: 1.6; font-weight: 400; }
-
-.trust-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  padding: 32px 48px; border-radius: 16px; box-shadow: var(--glass-shadow);
-  max-width: 1100px; margin: -50px auto 0;
-  position: relative; z-index: 10; flex-wrap: wrap;
-}
-.tb-item{
-  display:flex;align-items:center;gap:12px;
-  font-family:"Outfit",sans-serif;font-size:13px;font-weight:700;
-  text-transform:uppercase;color:var(--ink);letter-spacing:0.05em;
-}
-.tb-item svg{stroke:var(--red-bright);width:24px;height:24px;}
-@media (max-width:960px){
-  .trust-bar{justify-content:center;margin-top:-20px;}
-} .l{
-  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.17em;
-  text-transform:uppercase;color:var(--muted);margin:9px 0 6px;
-}
-.hstat p{margin:0;font-size:15px;color:var(--body);line-height:1.5}
-
-/* ── trust strip ── */
-.trust{background:var(--band);color:var(--band-ink)}
-.trust ul{
-  list-style:none;margin:0;padding:0;display:grid;
-  grid-template-columns:repeat(5,1fr);gap:1px;background:var(--band-rule);
-}
-@media (max-width:900px){.trust ul{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:460px){.trust ul{grid-template-columns:1fr}}
-.trust li{
-  background:var(--band);padding:20px 24px;display:flex;align-items:center;gap:11px;
-  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--band-ink);
-}
-.trust li svg{flex:0 0 auto;stroke:var(--red-bright)}
-
-/* ═══════════════════ ABOUT ═══════════════════ */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-@media (max-width:960px){.about-grid{grid-template-columns:1fr;gap:60px}}
-.about-col{display:flex;flex-direction:column;gap:40px}
-
-.highlight-box {
-  background: var(--field);
-  border-left: 4px solid var(--red-bright);
-  padding: 32px;
-  border-radius: 0 8px 8px 0;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.6;
-  color: var(--ink);
-  margin: 24px 0;
-}
-
-.timeline{position:relative;margin:16px 0 0;border-left:2px solid var(--rule)}
-.tl-row{position:relative;padding:0 0 40px 32px}
-.tl-row:last-child{padding-bottom:0}
-.tl-row::before{
-  content:"";position:absolute;left:-7px;top:0;width:12px;height:12px;
-  background:var(--paper);border:2px solid var(--red-bright);border-radius:50%;
-}
-.tl-row .yr{font-family:"Outfit",sans-serif;font-weight:700;color:var(--red-bright);font-size:16px;margin-bottom:8px}
-.tl-row h4{font-size:19px;margin:0 0 6px;letter-spacing:-.01em;font-weight:600;}
-.tl-row p{margin:0;font-size:15px;color:var(--body);line-height:1.6}
-
-.box-card {
-  background: var(--panel);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 40px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.04);
-}
-.box-card h3 {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--red-bright);
-  margin-bottom: 24px;
-  font-weight: 700;
-}
-.services-grid-2x2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 32px;
-}
-@media (max-width: 600px) { .services-grid-2x2 { grid-template-columns: 1fr; } }
-.svc-card {
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  padding: 36px 32px; border-radius: 16px;
-  box-shadow: var(--glass-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  position: relative; overflow: hidden;
-  display: flex; flex-direction: column; align-items: flex-start;
-}
-.svc-card:hover {
-  transform: translateY(-6px);
-  border-top-color: var(--red-bright);
-  box-shadow: var(--glow-copper);
-}
-.svc-icon {
-  width: 72px; height: 72px; border-radius: 50%;
-  border: 2px solid var(--red-bright); padding: 4px;
-  background: var(--paper); box-shadow: 0 0 20px rgba(255,107,0,0.3);
-  margin-bottom: 24px; position: relative; z-index: 2;
-}
-.svc-icon img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-}
-.svc-card::before {
-  content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at top left, rgba(255,107,0,0.05), transparent 60%);
-  pointer-events: none; z-index: 1;
-}
-.svc-card h4 {
-  font-size: 20px; margin-bottom: 12px; font-family: "Outfit", sans-serif; font-weight: 700; color: var(--ink);
-  position: relative; z-index: 2;
-}
-.svc-card p {
-  font-size: 15px; color: var(--body); line-height: 1.6; margin: 0;
-  position: relative; z-index: 2;
-}
-
-.pullquote{
-  border-left:3px solid var(--red-bright);padding:4px 0 4px 22px;margin:28px 0;
-  font-size:20px;line-height:1.55;font-style:italic;color:var(--ink);
-}
-.timeline {
-  margin-top: 80px; position: relative;
-  display: flex; flex-direction: column; gap: 60px;
-}
-.timeline::before {
-  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px;
-  background: linear-gradient(to bottom, var(--blue-soft) 0%, var(--red-bright) 100%);
-  transform: translateX(-50%); opacity: 0.3; border-radius: 4px;
-}
-.tl-row {
-  display: flex; width: 100%; position: relative;
-  justify-content: flex-start; align-items: center;
-  opacity: 0; transform: translateY(24px);
-}
-.tl-row:nth-child(even) { justify-content: flex-end; }
-.tl-row.in-view { animation: tl-slide-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
-@keyframes tl-slide-up{to{opacity:1;transform:translateY(0)}}
-.tl-row::before {
-  content: ""; position: absolute; left: 50%; top: 50%;
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--red-bright); border: 4px solid var(--paper);
-  transform: translate(-50%, -50%); z-index: 2;
-  box-shadow: 0 0 16px rgba(255, 107, 0, 0.6);
-}
-.tl-content {
-  width: 42%; background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-radius: 12px; padding: 24px;
-  box-shadow: var(--glass-shadow); position: relative; z-index: 5;
-}
-.tl-row:nth-child(odd) .tl-content { text-align: right; }
-@media (max-width: 520px) {
-  .timeline::before { left: 20px; }
-  .tl-row { justify-content: flex-end !important; }
-  .tl-row::before { left: 20px; }
-  .tl-content { width: calc(100% - 60px); text-align: left !important; }
-}
-.tl-row .yr {
-  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 28px;
-  color: var(--red-bright); letter-spacing: -.02em; line-height: 1; margin-bottom: 8px;
-}
-.tl-row h4 { margin-bottom: 8px; font-size: 19px; color: var(--ink); }
-.tl-row p { margin: 0; font-size: 15px; color: var(--body); line-height: 1.6; }
-
-.tl-photo {
-  position: absolute; width: 140px; height: 160px;
-  background: #eee; padding: 8px 8px 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.8);
-  border-radius: 2px; z-index: 10; pointer-events: none;
-}
-.tl-row:nth-child(odd) .tl-photo { left: 55%; right: auto; top: -10px; transform: rotate(12deg); }
-.tl-row:nth-child(even) .tl-photo { right: 55%; left: auto; top: -10px; transform: rotate(-8deg); }
-.tl-photo img { width: 100%; height: 100%; object-fit: cover; border: 1px solid #ccc; filter: sepia(30%); }
-@media (max-width: 520px) { .tl-photo { display: none; } }
-
-.card{
-  border:1px solid var(--rule);background:var(--panel);
-  border-radius:12px;
-  box-shadow:0 8px 30px rgba(0,0,0,0.03);
-  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
-}
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 40px rgba(0,0,0,0.07);
-}
-.card-hd{
-  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--muted);padding:20px 24px 0;
-}
-.deftable{width:100%;border-collapse:collapse;margin:14px 0 0}
-.deftable th,.deftable td{
-  padding:13px 24px;border-top:1px solid var(--rule-2);font-size:15px;text-align:left;
-}
-.deftable tr:first-child th,.deftable tr:first-child td{border-top:1px solid var(--rule)}
-.deftable th{font-weight:400;color:var(--muted);font-family:"Outfit",sans-serif}
-.deftable td{text-align:right;color:var(--ink);font-weight:500;font-family:"IBM Plex Mono",monospace;font-size:13px}
-.pill{
-  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
-  letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;
-  background:var(--tint);color:var(--blue);border:1px solid var(--rule);
-}
-.pill.ok{color:var(--ok);border-color:var(--ok-line);background:var(--ok-bg)}
-.territory{background:var(--band);color:var(--band-ink);padding:28px;margin-top:24px}
-.territory .lbl{
-  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--red-bright);margin-bottom:14px;
-}
-.territory p{color:var(--band-ink-2);font-size:15.5px;margin-bottom:18px}
-.tags{display:flex;flex-wrap:wrap;gap:8px}
-.tags span{
-  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.09em;
-  padding:6px 11px;border:1px solid var(--band-rule);color:var(--band-ink);
-}
-
-/* ═══════════════════ SERVICES ═══════════════════ */
-.services-section {
-  padding: 120px 0;
-  border-top: 1px solid var(--rule);
-  background: var(--paper);
-}
-.services-section .sec-head {
-  margin-bottom: 60px;
-}
-.tabs {
-  display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;
-}
-.tabs button {
-  appearance: none; border: 0;
-  background: var(--panel); border: 1px solid var(--rule); color: var(--body);
-  padding: 12px 28px; border-radius: 30px; font-family: "Outfit", sans-serif; font-size: 16px; font-weight: 600;
-  cursor: pointer; transition: all 0.3s;
-}
-.tabs button[aria-selected="true"] {
-  background: var(--red-bright); color: #fff; border-color: var(--red-bright); box-shadow: var(--glow-copper);
-}
-.tabs button:hover:not([aria-selected="true"]) {
-  background: var(--glass-bg); color: var(--ink); border-color: var(--blue-soft);
-}
-.svc-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
-}
-@media (max-width: 900px) { .svc-grid { grid-template-columns: 1fr; } }
-.svc-card .tag {
-  font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--red-bright); margin-bottom: 16px; display: block;
-}
-.svc-card h3 { font-size: 22px; margin-bottom: 12px; color: var(--ink); font-family: "Outfit", sans-serif; }
-.svc-card p { font-size: 16px; color: var(--body); line-height: 1.6; margin-bottom: 24px; }
-.svc-card ul {
-  list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;
-  border-top: 1px solid var(--rule); padding-top: 24px;
-}
-.svc-card ul li {
-  font-size: 15px; color: var(--body); position: relative; padding-left: 20px; line-height: 1.5;
-}
-.svc-card ul li::before {
-  content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px;
-  background: var(--red-bright); border-radius: 50%; box-shadow: var(--glow-copper);
-}
-[hidden] { display: none !important; }
-
-/* ═══════════════════ PROCESS ═══════════════════ */
-.process {
-  background: var(--paper);
-  padding: 140px 0;
-  position: relative;
-}
-.process h2 { color: var(--ink); }
-.process-timeline {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  margin-top: 80px;
-}
-@media (max-width: 960px) {
-  .process-timeline { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-}
-@media (max-width: 560px) {
-  .process-timeline { grid-template-columns: 1fr; gap: 40px; }
-}
-.p-step {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
-  border-top: 2px solid var(--red-bright);
-  border-radius: 16px;
-  padding: 40px 32px;
-  position: relative;
-  box-shadow: var(--glass-shadow);
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
-.p-step:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--glow-copper);
-}
-.p-step::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at top right, rgba(255,107,0,0.15), transparent 60%);
-  pointer-events: none;
-}
-.p-num {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-size: 64px;
-  font-weight: 800;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.15);
-  line-height: 1;
-  margin-bottom: 24px;
-  transition: all 0.4s ease;
-}
-.p-step:hover .p-num {
-  color: var(--red-bright);
-  -webkit-text-stroke: 1px var(--red-bright);
-}
-.p-content h4 {
-  font-size: 24px;
-  font-family: "Outfit", sans-serif;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-.p-content p {
-  font-size: 16px;
-  color: var(--body);
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ═══════════════════ MARKETS ═══════════════════ */
-.markets {
-  padding: 140px 0;
-  background-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)), url('bg_industries.jpg');
-  background-size: cover; background-position: center; background-attachment: fixed;
-  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-}
-.markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-@media (max-width: 960px) { .markets-grid { grid-template-columns: 1fr; gap: 40px; } }
-.mkt-col { display: flex; flex-direction: column; gap: 40px; }
-.mkt-image-card {
-  position: relative; height: 460px; border-radius: 16px; overflow: hidden;
-  display: flex; align-items: flex-end; padding: 40px;
-  background-size: cover; background-position: center;
-  border: var(--glass-border); box-shadow: var(--glass-shadow);
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  isolation: isolate;
-  background-clip: padding-box;
-}
-.mkt-image-card::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); z-index: 1;
-  border-radius: inherit; pointer-events: none;
-}
-.mkt-image-card h4 {
-  position: relative; z-index: 2; color: #fff; font-size: 32px; font-family: "Outfit", sans-serif; font-weight: 700; margin: 0;
-}
-.stat-highlight {
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  padding: 56px; border-radius: 16px; border: var(--glass-border);
-  box-shadow: var(--glass-shadow); border-top: var(--glass-border-hi);
-  display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
-}
-.stat-highlight .stat-n {
-  font-family: "Bricolage Grotesque", sans-serif; font-size: 72px; font-weight: 800;
-  color: var(--red-bright); line-height: 1; letter-spacing: -0.02em;
-}
-.stat-highlight p { font-size: 18px; line-height: 1.6; color: var(--body); margin: 0; }
-
-/* ═══════════════════ WHY ═══════════════════ */
-.why-ecp { padding: 120px 0; background: var(--tint); }
-.why-grid { display: grid; grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); gap: 80px; }
-@media (max-width:960px) { .why-grid { grid-template-columns:1fr; gap:40px; } }
-.statbox { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
-.statbox div {
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  padding: 28px 24px; border-radius: 12px;
-  box-shadow: var(--glass-shadow); transition: all 0.3s ease;
-}
-.statbox div:hover {
-  box-shadow: var(--glow-copper); transform: translateY(-4px); border-top-color: var(--red-bright);
-}
-.statbox .n {
-  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 38px;
-  line-height: 1; color: var(--red-bright); letter-spacing: -.03em;
-}
-.statbox .l {
-  font-family: "Outfit", sans-serif; font-size: 13px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .1em; color: var(--ink); margin-top: 10px;
-}
-.reasons { border-top: 1px solid var(--rule); }
-.reason {
-  display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 18px;
-  padding: 26px 0; border-bottom: 1px solid var(--rule);
-}
-.reason .n {
-  font-family: "Outfit", sans-serif; font-size: 14px; font-weight: 700; color: var(--red-bright);
-  padding-top: 4px; letter-spacing: .08em;
-}
-.reason h4 { margin-bottom: 9px; }
-.reason p { margin: 0; font-size: 16px; color: var(--body); line-height: 1.6; }
-
-/* ═══════════════════ TESTIMONIALS ═══════════════════ */
-.testimonials{background:var(--band);padding:120px 0;}
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
-@media (max-width:960px){.quotes{grid-template-columns:1fr;gap:24px;}}
-.quote{
-  background:rgba(255,255,255,0.03);padding:40px;display:flex;flex-direction:column;gap:24px;
-  border:1px solid rgba(255,255,255,0.1);border-radius:12px;
-  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
-}
-.quote:hover{
-  transform:translateY(-4px);
-  background:rgba(255,255,255,0.05);
-  border-color:var(--red-bright);
-}
-.stars{color:var(--red-bright);letter-spacing:4px;font-size:18px}
-.quote blockquote{margin:0;font-size:18px;line-height:1.6;font-family:"Outfit",sans-serif;font-weight:300;color:var(--band-ink);flex:1}
-.quote .by{font-family:"Outfit",sans-serif;font-size:14px;line-height:1.6;color:var(--band-ink-3);}
-.quote .by b{color:var(--band-ink);font-weight:600;display:block;font-size:16px;}
-
-/* ═══════════════════ SPECIALTIES ═══════════════════ */
-.specs {
-  padding: 140px 0;
-  background-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)), url('bg_spec.jpg');
-  background-size: cover; background-position: center; background-attachment: fixed;
-  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-}
-.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-@media (max-width: 900px) { .spec-grid { grid-template-columns: 1fr; gap: 24px; } }
-.spec {
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  padding: 0; position: relative; border-radius: 16px; overflow: hidden;
-  box-shadow: var(--glass-shadow); transition: all 0.3s ease;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  isolation: isolate;
-  background-clip: padding-box;
-}
-.spec:hover {
-  transform: translateY(-4px); box-shadow: var(--glow-copper); border-top-color: var(--red-bright);
-}
-.spec-img {
-  width: 100%; height: 220px; object-fit: cover; display: block;
-}
-.spec-body { padding: 32px; }
-.spec .tag {
-  font-family: "Outfit", sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--red-bright); margin-bottom: 16px; display: inline-block;
-  padding: 6px 12px; background: rgba(255, 107, 0, 0.1); border-radius: 4px; border: 1px solid rgba(255, 107, 0, 0.2);
-}
-.spec h3 { margin-bottom: 16px; font-size: 22px; font-family: "Outfit", sans-serif; font-weight: 700; color: var(--ink); }
-.spec p { font-size: 15px; color: var(--body); margin-bottom: 24px; line-height: 1.6; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chips span {
-  font-family: "Outfit", sans-serif; font-size: 13px; padding: 6px 12px;
-  border: 1px solid rgba(255,255,255,0.15); color: #fff; background: rgba(0,0,0,0.5); border-radius: 4px;
-}
-
-/* ═══════════════════ FAQ ═══════════════════ */
-#faq { padding: 120px 0; background: var(--tint); }
-.faq-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); gap: 80px; align-items: start; }
-@media (max-width: 960px) { .faq-grid { grid-template-columns: 1fr; gap: 60px; } }
-details { border-bottom: 1px solid var(--rule); }
-details:first-of-type { border-top: 1px solid var(--rule); }
-summary {
-  list-style: none; cursor: pointer; padding: 24px 44px 24px 0; position: relative;
-  font-size: 20px; color: var(--ink); font-family: "Outfit", sans-serif; font-weight: 500;
-}
-summary::-webkit-details-marker { display: none; }
-summary::after {
-  content: ""; position: absolute; right: 8px; top: 32px; width: 10px; height: 10px;
-  border-right: 2px solid var(--red-bright); border-bottom: 2px solid var(--red-bright);
-  transform: rotate(45deg); transition: transform .3s ease;
-}
-details[open] summary::after { transform: rotate(-135deg); top: 36px; }
-details .ans { padding: 0 40px 32px 0; color: var(--body); font-size: 16px; line-height: 1.6; }
-
-.askbox { background: var(--band); color: var(--band-ink); padding: 48px; border-radius: 12px; }
-.askbox h3 { color: var(--band-ink); margin-bottom: 16px; font-family: "Outfit", sans-serif; font-size: 24px; }
-.askbox p { color: var(--band-ink-2); font-size: 16px; line-height: 1.6; margin-bottom: 24px; }
-.askbox .btn { width: 100%; text-align: center; justify-content: center; }
-
-.qref { border: 1px solid var(--rule); background: var(--panel); margin-top: 24px; border-radius: 12px; padding: 32px; }
-.qref .card-hd { font-family: "Outfit", sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
-
-/* ═══════════════════ CONTACT ═══════════════════ */
-#contact { padding: 140px 0; background: var(--paper); border-top: 1px solid var(--rule); position: relative; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-@media (max-width: 960px) { .contact-grid { grid-template-columns: 1fr; gap: 60px; } }
-
-.contact-visual {
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  border-radius: 24px; padding: 60px; box-shadow: var(--glass-shadow);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.contact-visual::before {
-  content: ""; position: absolute; top: 50%; left: 50%; width: 250px; height: 250px;
-  background: var(--red-bright); filter: blur(120px); opacity: 0.3; transform: translate(-50%, -50%);
-}
-.glowing-pin {
-  width: 60px; height: 60px; background: var(--red-bright); border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg); position: relative; z-index: 2;
-  box-shadow: 0 0 40px rgba(255,107,0,0.8); margin-bottom: 40px;
-  animation: pulse-pin 2s infinite alternate;
-}
-.glowing-pin::after {
-  content: ""; width: 24px; height: 24px; background: #fff; border-radius: 50%;
-  position: absolute; top: 18px; left: 18px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-}
-@keyframes pulse-pin {
-  0% { box-shadow: 0 0 30px rgba(255,107,0,0.6); }
-  100% { box-shadow: 0 0 60px rgba(255,107,0,1); }
-}
-
-.cdetail { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; position: relative; z-index: 2; }
-.cdetail:first-of-type { border-top: 0; }
-.cdetail svg { stroke: var(--red-bright); width: 24px; height: 24px; flex-shrink: 0; }
-.cdetail .l { font-family: "Outfit", sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red-bright); margin-bottom: 8px; }
-.cdetail .v { font-size: 15px; color: var(--ink); line-height: 1.6; }
-.cdetail .v a { color: var(--ink); text-decoration: none; }
-.cdetail .v a:hover { color: var(--red-bright); }
-
-.form-card {
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-  border: var(--glass-border); border-top: var(--glass-border-hi);
-  padding: 48px; box-shadow: var(--glass-shadow); border-radius: 24px;
-}
-.form-card h3 {
-  font-family: "Outfit", sans-serif; font-size: 48px; font-weight: 700;
-  color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em;
-}
-.form-card .form-sub {
-  font-size: 18px; color: var(--body); margin-bottom: 40px; line-height: 1.6;
-}
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media (max-width: 520px) { .frow { grid-template-columns: 1fr; } }
-.field { margin-bottom: 24px; }
-.field label {
-  display: block; font-family: "Outfit", sans-serif; font-size: 14px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 12px;
-}
-.field input, .field select, .field textarea {
-  width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
-  padding: 16px; font-family: "Outfit", sans-serif; font-size: 16px; color: var(--ink);
-  border-radius: 8px; transition: all 0.3s ease;
-}
-.field textarea { min-height: 160px; resize: vertical; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--red-bright); outline: none; background: rgba(0,0,0,0.6); box-shadow: 0 0 0 2px rgba(255,107,0,0.3); }
-.submit {
-  width: 100%; background: var(--red-bright); color: #fff; border: 0; padding: 18px;
-  font-family: "Outfit", sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  cursor: pointer; transition: all 0.3s ease; border-radius: 8px; margin-top: 16px;
-}
-.submit:hover { background: #d04010; transform: translateY(-2px); box-shadow: 0 8px 24px color-mix(in srgb,var(--red-bright) 35%,transparent); }
-
-/* ═══════════════════ FOOTER ═══════════════════ */
-footer { background: #020617; color: var(--band-ink); padding: 100px 0 40px; }
-.foot-grid { display: grid; grid-template-columns: minmax(0,1.5fr) repeat(3,minmax(0,1fr)); gap: 60px; }
-@media (max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
-@media (max-width: 520px) { .foot-grid { grid-template-columns: 1fr; gap: 40px; } }
-footer h4 {
-  color: var(--red-bright); font-family: "Outfit", sans-serif; font-size: 14px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;
-}
-.foot-brand b { display: block; font-family: "Outfit", sans-serif; font-weight: 700; font-size: 28px; color: var(--band-ink); line-height: 1.1; margin-bottom: 8px; }
-.foot-brand small { display: block; font-family: "Outfit", sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red-bright); margin-bottom: 24px; }
-.foot-brand p { color: var(--band-ink-2); font-size: 16px; line-height: 1.6; max-width: 32ch; }
-.foot-brand .ph { font-family: "Outfit", sans-serif; font-size: 18px; color: var(--band-ink); margin-top: 16px; font-weight: 500; }
-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
-footer ul a, footer ul li { color: var(--band-ink-2); text-decoration: none; font-size: 16px; transition: color 0.2s ease; }
-footer ul a:hover { color: var(--band-ink); }
-.foot-rule {
-  border-top: 1px solid rgba(255,255,255,0.1); margin-top: 80px; padding-top: 32px;
-  display: flex; flex-wrap: wrap; gap: 16px 40px; justify-content: space-between;
-  font-family: "Outfit", sans-serif; font-size: 14px; color: var(--band-ink-3);
-}
-
-/* ═══════════════════ GLOBAL ANIMATIONS ═══════════════════ */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-.fade-up.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
-/* ═══════════════════ MOBILE RESPONSIVENESS ═══════════════════ */
-/* Mobile Nav */
-.menu-toggle {
-  display: none; background: transparent; border: none; color: var(--ink); cursor: pointer; padding: 4px;
-}
-@media (max-width:1080px) {
-  .mainnav, .topbar .top-btn { display: none; }
-  .menu-toggle { display: block; }
-}
-
-.mobile-nav-overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-  background: color-mix(in srgb, var(--paper) 96%, transparent);
-  backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
-  z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  visibility: hidden;
-}
-.mobile-nav-overlay.open { transform: translateY(0); visibility: visible; }
-.menu-close {
-  position: absolute; top: 24px; right: 24px;
-  background: transparent; border: none; color: var(--ink); font-size: 40px; cursor: pointer; line-height: 1;
-}
-.mobnav { display: flex; flex-direction: column; gap: 32px; text-align: center; }
-.mobnav a {
-  font-family: "Outfit", sans-serif; font-size: 24px; font-weight: 600;
-  color: var(--ink); text-decoration: none;
-}
-.mobnav a:hover { color: var(--red-bright); }
-.mobnav a.btn { font-size: 16px; margin-top: 16px; color: var(--paper); }
-
-/* Mobile Padding & Typography Adjustments */
-@media (max-width: 600px) {
-  h2 { font-size: 32px; }
-  h3 { font-size: 26px; }
-  .statbox { grid-template-columns: 1fr; gap: 16px; }
-  .contact-visual, .form-card { padding: 32px; }
-  .stat-highlight { padding: 32px; }
-  .stat-highlight .stat-n { font-size: 56px; }
-  .p-step { padding: 32px 24px; }
-  .tl-content { padding: 16px; }
-  
-  .hero {
-    background-image: 
-      linear-gradient(to bottom, var(--paper) 0%, rgba(248,250,252,0.95) 40%, rgba(248,250,252,0.2) 100%),
-      url('hero_3d.jpg');
-    background-position: center bottom;
-  }
-}
-</style>
-
-<!-- ═══════════════════ HEADER ═══════════════════ -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="#top"><b>ECP LTD.</b><small>EST. 1975 · FREDERICK, MD</small></a>
+    <a class="brand" href="index.html">
+      <b>ECP</b>
+      <small>ENGINEERING</small>
+    </a>
     <nav class="mainnav" aria-label="Main">
-      <a href="#top" class="active">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#services">Services</a>
-      <a href="#markets">Industries</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="services.html">Disciplines</a>
+      <a href="services.html#products">Capabilities</a>
+      <a href="contact.html#faq">FAQ</a>
     </nav>
-    <a class="btn btn-primary top-btn" href="#contact">Get a quote &rarr;</a>
-    <button class="menu-toggle" aria-label="Toggle menu" onclick="document.getElementById('mobilenav').classList.add('open')">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    <div class="top-meta">
+      <a class="top-search" href="projects.html" aria-label="Search projects">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </a>
+      <a class="btn btn-primary" href="contact.html">Contact Us &rarr;</a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
     </button>
   </div>
 </header>
 
 <div id="mobilenav" class="mobile-nav-overlay">
-  <button class="menu-close" aria-label="Close menu" onclick="document.getElementById('mobilenav').classList.remove('open')">&times;</button>
+  <button class="menu-close" aria-label="Close menu">&times;</button>
   <nav class="mobnav">
-    <a href="#top" onclick="document.getElementById('mobilenav').classList.remove('open')">Home</a>
-    <a href="#about" onclick="document.getElementById('mobilenav').classList.remove('open')">About Us</a>
-    <a href="#services" onclick="document.getElementById('mobilenav').classList.remove('open')">Services</a>
-    <a href="#markets" onclick="document.getElementById('mobilenav').classList.remove('open')">Industries</a>
-    <a href="#contact" onclick="document.getElementById('mobilenav').classList.remove('open')">Contact</a>
-    <a class="btn btn-primary" href="#contact" onclick="document.getElementById('mobilenav').classList.remove('open')">Get a quote &rarr;</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="services.html">Disciplines</a>
+    <a href="services.html#products">Capabilities</a>
+    <a href="contact.html" class="btn btn-primary">Contact Us &rarr;</a>
   </nav>
 </div>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
 <main id="top">
-<section class="hero" style="padding-bottom:120px">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="fade-up">
-        <p class="eyebrow" style="color:var(--red-bright)">BUILT ON ENGINEERING.</p>
-        <h1>Proven by<br><em>decades.</em></h1>
-        <p class="hero-sub">For over half a century, we've delivered safe, innovative and cost-effective engineering and construction solutions that stand the test of time.</p>
+  <!-- ═══════════════════ 1. FULL-BLEED BOVIS-STYLE HERO ═══════════════════ -->
+  <section class="hero-bovis">
+    <div class="wrap">
+      <div class="hero-bovis-content">
+        <span class="eyebrow on-dark">ENGINEERING · DESIGN · DELIVERY</span>
+        <h1>Built on engineering.<br>Proven by <em>decades.</em></h1>
+        <p>Since 1975, ECP has delivered complex structural engineering, specialty procurement, and construction solutions across the Mid-Atlantic, combining technical excellence, safety, and long-term value.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#services">Our expertise &rarr;</a>
-          <a class="btn btn-ghost" href="#projects">View projects &rarr;</a>
+          <a class="btn btn-primary" href="projects.html">Explore Our Work &rarr;</a>
+          <a class="btn btn-hero-outline" href="about.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            Watch Our Story
+          </a>
         </div>
       </div>
-      
-      <div class="hero-stats fade-up">
-        <div class="hstat">
-          <div class="n"><span class="counter" data-target="51">0</span></div>
-          <div class="l">Years</div>
-          <p>Of engineering & construction experience</p>
+    </div>
+  </section>
+
+  <!-- ── Overlapping 4-Column White Stats Card ── -->
+  <div class="wrap stats-overlap-wrap">
+    <div class="stats-overlap-card">
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="hstat">
-          <div class="n"><span class="counter" data-target="3">0</span></div>
-          <div class="l">Continents</div>
-          <p>Projects delivered across the globe</p>
+        <div class="stat-text">
+          <div class="n">51+</div>
+          <div class="l">Years of Excellence</div>
+          <p>A trusted engineering partner since 1975</p>
         </div>
-        <div class="hstat">
-          <div class="n"><span class="counter" data-target="93">0</span><sup>%</sup></div>
-          <div class="l">Success rate</div>
-          <p>Of projects completed on time and within budget</p>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="stat-text">
+          <div class="n">2,500+</div>
+          <div class="l">Projects Delivered</div>
+          <p>A multidisciplinary team driving complex projects</p>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div class="stat-text">
+          <div class="n">MD-DC-WV</div>
+          <div class="l">Integrated Capabilities</div>
+          <p>Multi-disciplinary design, construction, and execution</p>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="stat-text">
+          <div class="n">93 / 100</div>
+          <div class="l">Performance Score</div>
+          <p>Recognized for quality, safety, and delivery.</p>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ── trust strip ── -->
-<div class="wrap" style="padding-bottom:120px;">
-  <div class="trust-bar fade-up">
-    <div class="tb-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-      <span>Engineered to last</span>
-    </div>
-    <div class="tb-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      <span>Focus on safety</span>
-    </div>
-    <div class="tb-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-      <span>Quality assured</span>
-    </div>
-    <div class="tb-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-      <span>Cost effective</span>
-    </div>
-    <div class="tb-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      <span>On-time delivery</span>
-    </div>
-  </div>
-</div>
+  <!-- ═══════════════════ 2. ABOUT / FOUR DISCIPLINES ═══════════════════ -->
+  <section class="disciplines-sec">
+    <div class="wrap">
+      <div class="disciplines-split">
+        <div class="disciplines-left">
+          <span class="eyebrow">ABOUT ECP</span>
+          <h2>Four disciplines.<br>One accountable partner.</h2>
+          <p>We deliver fully integrated engineering, specialty procurement, and construction solutions across commercial, historic restoration, civil, and institutional projects.</p>
+          <a class="btn btn-primary" href="about.html">Learn More About Us &rarr;</a>
+        </div>
 
+        <div class="disciplines-2x2">
+          <a class="disc-box" href="services.html#structural">
+            <div class="disc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><path d="M2 18h20"/><path d="M4 18v-5a8 8 0 0 1 16 0v5"/><path d="M12 5v4"/></svg>
+            </div>
+            <div>
+              <h3>Engineering</h3>
+              <p>Innovative, practical, and constructible structural design.</p>
+            </div>
+          </a>
 
-<!-- ═══════════════════ ABOUT ═══════════════════ -->
-<section id="about">
-  <div class="wrap">
-    <div class="about-grid fade-up">
-      <!-- Left Column: About Us -->
-      <div class="about-col">
+          <a class="disc-box" href="services.html#products">
+            <div class="disc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div>
+              <h3>Procurement</h3>
+              <p>Reliable, cost-efficient, and quality-driven CSI Div 05/06/08 sourcing.</p>
+            </div>
+          </a>
+
+          <a class="disc-box" href="services.html#contracting">
+            <div class="disc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><path d="M3 21h18"/><path d="M6 21V5l12 4-12 4"/><path d="M18 9v6"/><circle cx="18" cy="17" r="2"/></svg>
+            </div>
+            <div>
+              <h3>Construction</h3>
+              <p>Safe, efficient, and on-schedule multi-state execution.</p>
+            </div>
+          </a>
+
+          <a class="disc-box" href="services.html#contracting">
+            <div class="disc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div>
+              <h3>Project Management</h3>
+              <p>End-to-end oversight for consistent, high-quality delivery.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 3. FEATURED PROJECTS ═══════════════════ -->
+  <section class="featured-projects-sec">
+    <div class="wrap">
+      <div class="sec-top-row">
         <div>
-          <p class="eyebrow" style="color:var(--red-bright)">ABOUT US</p>
-          <h2>Half a century of structural expertise.</h2>
-          <div style="margin-top:28px">
-            <p>Engineered Construction Products, Ltd. was founded in 1975 with a clear purpose: bring engineering discipline to specialty construction products and services in the Mid-Atlantic region. For over five decades, we have honored that commitment.</p>
-            
-            <div class="highlight-box">
-              We don't just supply products — we bring the engineering knowledge to ensure every component performs exactly as designed, for the life of the structure.
+          <span class="eyebrow">FEATURED PROJECTS</span>
+          <h2>Selected Mid-Atlantic work.</h2>
+        </div>
+        <a class="btn btn-outline-crimson" href="projects.html">View All Projects &rarr;</a>
+      </div>
+
+      <div class="carousel-stage">
+        <a class="carousel-arrow prev" href="projects.html" aria-label="Previous projects">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
+
+        <div class="proj-grid">
+          <article class="proj-card">
+            <div class="proj-media">
+              <img src="spec_wood.jpg" alt="Heavy Timber & Historic Sash Facility Restoration">
+              <span class="proj-badge">Industrial &amp; Timber</span>
             </div>
-            
-            <p>Under the leadership of President <strong>Kurtis Barron</strong>, ECP serves general contractors, developers, architects, and building owners who value a partner with real technical depth. Our team combines hands-on field experience with an engineering mindset — we solve problems before they become cost overruns.</p>
+            <div class="proj-body">
+              <h3>Heavy Timber &amp; Sash Restoration in Frederick</h3>
+              <p>Turnkey structural remediation, engineered heavy timber framing, and custom wood sash replication.</p>
+              <a class="proj-link" href="projects.html">View Project &rarr;</a>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-media">
+              <img src="mkt_commercial.jpg" alt="Commercial Office Building Modernization">
+              <span class="proj-badge">Commercial</span>
+            </div>
+            <div class="proj-body">
+              <h3>Office Building at Metro Corridor</h3>
+              <p>Full construction management and structural envelope upgrade for a multi-story commercial office building.</p>
+              <a class="proj-link" href="projects.html">View Project &rarr;</a>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-media">
+              <img src="mkt_civil.jpg" alt="Multi-Use Infrastructure & Structural Package">
+              <span class="proj-badge">Infrastructure</span>
+            </div>
+            <div class="proj-body">
+              <h3>Multi-Use Industrial Renovation &amp; Fit-Out</h3>
+              <p>Renovation, structural connection engineering, and fit-out of an existing facility to meet new operational requirements.</p>
+              <a class="proj-link" href="projects.html">View Project &rarr;</a>
+            </div>
+          </article>
+        </div>
+
+        <a class="carousel-arrow next" href="projects.html" aria-label="More projects">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="carousel-dots" aria-hidden="true">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 4. OUR APPROACH ═══════════════════ -->
+  <section class="approach-sec">
+    <div class="wrap">
+      <div class="approach-grid">
+        <div class="approach-left">
+          <span class="eyebrow">OUR APPROACH</span>
+          <h2>Where design-assist meets turnkey execution.</h2>
+          <p>From early design collaboration through final delivery, we align engineering, procurement, and construction to reduce risk, improve cost certainty, and deliver lasting value.</p>
+          <div class="approach-actions">
+            <a class="btn btn-primary" href="services.html">Our Capabilities &rarr;</a>
+            <a class="btn btn-outline-crimson" href="about.html">How We Deliver</a>
           </div>
         </div>
 
-        <div class="timeline">
-          <div class="tl-row">
-            <div class="tl-content">
-              <div class="yr">1975</div>
-              <h4>Founded</h4>
-              <p>Established in Frederick, MD as a specialty construction supplier.</p>
+        <div class="approach-cards">
+          <div class="app-card">
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><rect x="3" y="12" width="4" height="8"/><rect x="10" y="8" width="4" height="12"/><rect x="17" y="4" width="4" height="16"/></svg>
             </div>
-            <div class="tl-photo"><img src="polaroid_1975.jpg" alt="1975 founding photo"></div>
+            <h3>Design-Assist</h3>
+            <p>Collaborative, value-driven engineering from the start.</p>
           </div>
-          <div class="tl-row">
-            <div class="tl-content">
-              <div class="yr">1990s</div>
-              <h4>Engineering Added</h4>
-              <p>Broadened scope to include structural engineering consulting.</p>
+
+          <div class="app-card">
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
             </div>
+            <h3>Turnkey Delivery</h3>
+            <p>Integrated solutions from design to handover.</p>
           </div>
-          <div class="tl-row">
-            <div class="tl-content">
-              <div class="yr">2000s</div>
-              <h4>CM Expansion</h4>
-              <p>Added full-service CM capabilities for commercial projects.</p>
+
+          <div class="app-card">
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
             </div>
-            <div class="tl-photo"><img src="polaroid_1990.jpg" alt="1990s construction site"></div>
-          </div>
-          <div class="tl-row">
-            <div class="tl-content">
-              <div class="yr">Today</div>
-              <h4>51 Years Strong</h4>
-              <p>Continuing to serve the Mid-Atlantic with engineering-first values.</p>
-            </div>
+            <h3>Quality &amp; Safety</h3>
+            <p>A culture of safety, quality, and continuous improvement.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══════════════════ 5. CRIMSON CTA BANNER ═══════════════════ -->
+  <section class="cta-band">
+    <div class="wrap">
+      <div class="cta-band-3col">
         <div>
-          <a class="btn btn-ghost" href="#contact">More about us &rarr;</a>
+          <span class="eyebrow on-dark">LET'S BUILD TOGETHER</span>
+          <h2>Have drawings for review<br>or a project out to bid?</h2>
         </div>
-      </div>
-
-      <!-- Right Column: Numbers, Certs, Services -->
-      <div class="about-col" id="services">
-        
-        <!-- By The Numbers -->
-        <div class="box-card">
-          <h3>By The Numbers</h3>
-          <table class="deftable">
-            <tr><th>Founded</th><td>1975</td></tr>
-            <tr><th>Headquarters</th><td>Frederick, MD</td></tr>
-            <tr><th>President</th><td>Kurtis Barron</td></tr>
-            <tr><th>BuildZoom Score</th><td>93 / 100</td></tr>
-            <tr><th>Industry Rank (MD)</th><td>Top 27%</td></tr>
-            <tr><th>States Licensed</th><td>MD, DC, WV</td></tr>
-          </table>
+        <div class="cta-mid">
+          <p>Send us your plans, and our team will provide a timely, competitive response.</p>
         </div>
-
-        <!-- Certifications -->
-        <div class="box-card">
-          <h3>Certifications &amp; Licenses</h3>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <span class="pill ok">Maryland General Contractor</span>
-            <span class="pill ok">DC CM #70101094</span>
-            <span class="pill ok">WV Specialty Contractor</span>
-            <span class="pill">USDOT #897979</span>
-            <span class="pill">Bonded &amp; Insured</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ SERVICES ═══════════════════ -->
-<section id="services" class="services-section">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <p class="eyebrow">What we do</p>
-        <h2>Comprehensive construction services</h2>
-      </div>
-      <p>From engineering consultation to turnkey project delivery, ECP provides the technical depth that complex commercial and civil construction demands. We work alongside general contractors, developers, and building owners across every phase of a project.</p>
-    </div>
-
-    <div class="tabs" role="tablist" aria-label="Service categories">
-      <button role="tab" aria-selected="true" aria-controls="p-structural" id="t-structural">Structural</button>
-      <button role="tab" aria-selected="false" aria-controls="p-contracting" id="t-contracting">Contracting</button>
-      <button role="tab" aria-selected="false" aria-controls="p-products" id="t-products">Products</button>
-      <button role="tab" aria-selected="false" aria-controls="p-consulting" id="t-consulting">Consulting</button>
-    </div>
-
-    <div class="svc-grid" role="tabpanel" id="p-structural" aria-labelledby="t-structural">
-      <article class="svc-card">
-        <span class="tag">S-01 / Engineering</span>
-        <h3>Structural Engineering Consulting</h3>
-        <p>Engineering-backed evaluation and specification of structural systems for commercial, industrial, and civil projects. We review drawings, specify components, and provide on-site support through construction.</p>
-        <ul><li>Structural system evaluation and specification</li><li>Load analysis and connection design review</li><li>Field observation and construction phase support</li><li>Retrofit and remediation consulting</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">S-02 / Supply</span>
-        <h3>Engineered Component Supply</h3>
-        <p>We source, specify, and supply engineered structural components that meet project requirements — including wood structural assemblies, custom sash systems, and specialty hardware.</p>
-        <ul><li>Wood sash systems and structural windows</li><li>Prefabricated structural assemblies</li><li>Custom-specified hardware and connectors</li><li>Material certification and quality review</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">S-03 / Operations</span>
-        <h3>Nonresidential Facility Services</h3>
-        <p>Operational support and maintenance consulting for commercial and institutional facilities. We help owners keep existing structures performing safely and efficiently.</p>
-        <ul><li>Facility condition assessments</li><li>Preventive maintenance planning</li><li>Structural safety inspections</li><li>Owner's representative services</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">S-04 / Pre-con</span>
-        <h3>Pre-Construction Structural Review</h3>
-        <p>Before breaking ground, our team reviews structural drawings, identifies risk areas, and coordinates with design teams to resolve issues that could cause delays or cost overruns during construction.</p>
-        <ul><li>Drawing and spec review</li><li>Constructability analysis</li><li>RFI and submittal support</li><li>Value engineering alternatives</li></ul>
-      </article>
-    </div>
-
-    <div class="svc-grid" role="tabpanel" id="p-contracting" aria-labelledby="t-contracting" hidden>
-      <article class="svc-card">
-        <span class="tag">C-01 / Build</span>
-        <h3>General Contracting</h3>
-        <p>Full-scope general contracting services for commercial, institutional, and civil projects. Multi-state licensed in MD, DC, and WV — we handle cross-jurisdictional work without the typical coordination overhead.</p>
-        <ul><li>Bid preparation and contract negotiation</li><li>Subcontractor procurement and management</li><li>Schedule development and control</li><li>Quality assurance and punch-list management</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">C-02 / Manage</span>
-        <h3>Construction Management</h3>
-        <p>Owner's representative and CM-at-risk services to keep projects on schedule, on budget, and within scope — from preconstruction planning through certificate of occupancy.</p>
-        <ul><li>Preconstruction planning and budgeting</li><li>Contractor selection and oversight</li><li>Cost reporting and change order management</li><li>Closeout documentation and warranty tracking</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">C-03 / Estimate</span>
-        <h3>Project Estimating</h3>
-        <p>Detailed cost modeling and estimating services for owners, developers, and GCs. Our engineering background means we catch scope gaps that typical estimators miss.</p>
-        <ul><li>Conceptual and schematic budgets</li><li>Design development estimates</li><li>Bid document quantity takeoffs</li><li>Change order pricing review</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">C-04 / Coordinate</span>
-        <h3>Subcontractor Coordination</h3>
-        <p>We maintain deep relationships with specialty trades throughout the Mid-Atlantic. When your project needs a trusted sub, we can connect you with vetted partners across disciplines.</p>
-        <ul><li>Specialty trade procurement</li><li>Scope coordination and conflict resolution</li><li>Multi-prime project coordination</li><li>Trade-specific quality reviews</li></ul>
-      </article>
-    </div>
-
-    <div class="svc-grid" role="tabpanel" id="p-products" aria-labelledby="t-products" hidden>
-      <article class="svc-card">
-        <span class="tag">P-01 / Sash</span>
-        <h3>Wood Sash &amp; Window Systems</h3>
-        <p>Custom and standard wood sash systems specified and supplied for restoration, historic preservation, and new commercial construction. We match existing profiles and coordinate installation.</p>
-        <ul><li>Historic and custom wood sash profiles</li><li>Commercial storefront window systems</li><li>Restoration-grade glazing and hardware</li><li>Shop drawings and installation coordination</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">P-02 / Framing</span>
-        <h3>Structural Framing Products</h3>
-        <p>Engineered lumber, LVL beams, structural steel connectors, and prefabricated framing components sourced and specified for commercial projects. All products supplied with appropriate certifications.</p>
-        <ul><li>Engineered lumber and LVL products</li><li>Structural steel connections and hardware</li><li>Prefabricated header and beam assemblies</li><li>Product submittals and material certifications</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">P-03 / Hardware</span>
-        <h3>Specialty Hardware &amp; Fasteners</h3>
-        <p>Technical fasteners, anchors, and specialty hardware for structural and architectural applications. We source products that meet project-specific load, finish, and code requirements.</p>
-        <ul><li>Structural anchors and post-installed fasteners</li><li>Architectural and decorative hardware</li><li>Custom and special-order components</li><li>Technical data sheets and ICC reports</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">P-04 / Logistics</span>
-        <h3>Product Procurement &amp; Logistics</h3>
-        <p>We manage the full procurement cycle for specialty construction products — sourcing, ordering, expediting, and coordinating delivery to your jobsite on schedule.</p>
-        <ul><li>Vendor qualification and sourcing</li><li>Lead time management and expediting</li><li>Jobsite delivery coordination</li><li>Receiving inspection and deficiency reporting</li></ul>
-      </article>
-    </div>
-
-    <div class="svc-grid" role="tabpanel" id="p-consulting" aria-labelledby="t-consulting" hidden>
-      <article class="svc-card">
-        <span class="tag">A-01 / Advisory</span>
-        <h3>Building Construction Consulting</h3>
-        <p>Independent consulting for owners, developers, and lenders who need an expert second opinion on construction projects. We review contracts, schedules, costs, and field conditions without a conflict of interest.</p>
-        <ul><li>Construction loan monitoring</li><li>Contract review and risk assessment</li><li>Schedule delay analysis</li><li>Dispute and claim support</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">A-02 / Code</span>
-        <h3>Code Compliance Advisory</h3>
-        <p>Navigating building codes and jurisdictional requirements across Maryland, DC, and West Virginia is complex. We help clients understand code implications before they become permit problems.</p>
-        <ul><li>IBC and IRC compliance review</li><li>AHJ coordination support</li><li>Permit application assistance</li><li>Variance and exception documentation</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">A-03 / Value</span>
-        <h3>Value Engineering</h3>
-        <p>When project costs come in over budget, we identify substitutions and design modifications that maintain structural and architectural intent while reducing cost — without cutting corners.</p>
-        <ul><li>Alternate system and material analysis</li><li>Cost-benefit comparison reports</li><li>Coordination with design team on substitutions</li><li>Constructability-driven redesign support</li></ul>
-      </article>
-      <article class="svc-card">
-        <span class="tag">A-04 / Specs</span>
-        <h3>Specification Writing</h3>
-        <p>Technical specification sections for structural systems, specialty products, and building envelope components. Written to CSI MasterFormat and coordinated with project drawings.</p>
-        <ul><li>Division 05, 06, and 08 specifications</li><li>Proprietary and performance-based specs</li><li>Product substitution review</li><li>Spec section coordination with design team</li></ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="process">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <p class="eyebrow" style="color:var(--red-bright)">OUR WORKFLOW</p>
-        <h2>Our project process.</h2>
-      </div>
-      <p>From initial consultation to closeout, our process is designed for clarity, efficiency, and engineering precision.</p>
-    </div>
-    
-    <div class="process-timeline fade-up">
-      <div class="p-step">
-        <div class="p-num">01</div>
-        <div class="p-content">
-          <h4>Consultation</h4>
-          <p>Direct conversation about scope, timeline, and technical requirements.</p>
-        </div>
-      </div>
-      <div class="p-step">
-        <div class="p-num">02</div>
-        <div class="p-content">
-          <h4>Assessment</h4>
-          <p>Review drawings, identify risks, and provide a clear scope of work.</p>
-        </div>
-      </div>
-      <div class="p-step">
-        <div class="p-num">03</div>
-        <div class="p-content">
-          <h4>Proposal</h4>
-          <p>Detailed, transparent proposal with every line item explained.</p>
-        </div>
-      </div>
-      <div class="p-step">
-        <div class="p-num">04</div>
-        <div class="p-content">
-          <h4>Execution</h4>
-          <p>Mobilize quickly, communicate proactively, and deliver safely.</p>
+        <div>
+          <a class="btn btn-white" href="contact.html">Request a Quote &rarr;</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ MARKETS ═══════════════════ -->
-<section id="markets" class="markets">
-  <div class="wrap">
-    <div class="markets-grid fade-up">
-      <div class="mkt-col">
-        <div style="margin-bottom:20px">
-          <p class="eyebrow" style="color:var(--red-bright)">INDUSTRIES</p>
-          <h2 style="color:var(--ink)">Market expertise.</h2>
-          <p style="color:var(--body); margin-top:24px; font-size: 18px; line-height: 1.6;">ECP has built deep experience across the project types that define the Mid-Atlantic construction landscape. Each sector has its own code requirements, procurement rhythms, and stakeholder dynamics — we know them all.</p>
-        </div>
-        
-        <div class="mkt-image-card" style="background-image:url('mkt_commercial.jpg')">
-          <h4>Commercial &amp; Office</h4>
-        </div>
-      </div>
-      
-      <div class="mkt-col">
-        <div class="stat-highlight">
-          <div class="stat-n">2,500<sup>+</sup></div>
-          <p>Projects completed safely and on-schedule across the Mid-Atlantic region since 1975.</p>
-          <a class="btn btn-primary" href="#projects">View all projects &rarr;</a>
-        </div>
-        
-        <div class="mkt-image-card" style="background-image:url('mkt_civil.jpg')">
-          <h4>Civil Infrastructure</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ WHY ECP ═══════════════════ -->
-<section id="why" class="why-ecp">
-  <div class="wrap">
-    <div class="why-grid fade-up">
-      <div>
-        <p class="eyebrow">Why choose ECP</p>
-        <h2>A different kind of construction partner.</h2>
-        <p style="margin-top:26px; font-size:18px; line-height:1.6;">In a region crowded with contractors, our clients return to us because we bring something the large firms can't: technical credibility, regional relationships built over five decades, and the kind of personal accountability that only comes from a locally owned, owner-operated business.</p>
-        <div class="statbox">
-          <div><div class="n">51</div><div class="l">Years operating</div></div>
-          <div><div class="n">3</div><div class="l">State licenses</div></div>
-          <div><div class="n">93</div><div class="l">BuildZoom score</div></div>
-          <div><div class="n">Top 27%</div><div class="l">MD contractors</div></div>
-        </div>
-      </div>
-
-      <div class="reasons">
-        <div class="reason"><div class="n">01</div><div><h4>Engineering-First, Always</h4><p>We don't just build — we think structurally. Every product we specify and every project we manage is reviewed with an engineering lens, reducing risk and improving long-term performance.</p></div></div>
-        <div class="reason"><div class="n">02</div><div><h4>Five Decades of Regional Relationships</h4><p>We've been working in Maryland, DC, and West Virginia since 1975. We know the subcontractors, the inspectors, the AHJs, and the project types.</p></div></div>
-        <div class="reason"><div class="n">03</div><div><h4>Owner-Operated Accountability</h4><p>When you work with ECP, decisions happen at the top. President Kurtis Barron stays engaged in the projects we take on.</p></div></div>
-        <div class="reason"><div class="n">04</div><div><h4>No Surprises Policy</h4><p>We communicate issues as they arise — not at the end of the month in a report. Transparency is non-negotiable at ECP.</p></div></div>
-        <div class="reason"><div class="n">05</div><div><h4>Multi-State, No Subcontracting Overhead</h4><p>Licensed to operate directly in MD, DC, and WV. No pass-through contractors, no inflated markups on multi-state work.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
-<section class="testimonials">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <p class="eyebrow" style="color:var(--red-bright)">TESTIMONIALS</p>
-        <h2 style="color:var(--band-ink)">Built on trust, sustained by results.</h2>
-      </div>
-    </div>
-    <div class="quotes fade-up">
-      <div class="quote">
-        <div class="stars">★★★★★</div>
-        <blockquote>“ECP has been our go-to for structural product spec and supply for over fifteen years. They know what we need before we finish explaining the project, and their lead times are consistently better than anyone else we've tried.”</blockquote>
-        <div class="by"><b>Senior Project Manager</b>Commercial GC, Baltimore MD</div>
-      </div>
-      <div class="quote">
-        <div class="stars">★★★★★</div>
-        <blockquote>“The engineering consulting ECP provided on our historic renovation saved us from a very costly structural mistake in the original design. They caught it in pre-con review and had an alternative spec ready within the week.”</blockquote>
-        <div class="by"><b>Project Owner</b>Historic Preservation Project, Frederick MD</div>
-      </div>
-      <div class="quote">
-        <div class="stars">★★★★★</div>
-        <blockquote>“We brought ECP in as CM on a difficult DC project with a tight schedule and a challenging owner. They kept everything organized, communicated clearly, and got us to closeout on time. Won't use anyone else for that kind of work.”</blockquote>
-        <div class="by"><b>VP of Development</b>Real Estate Developer, Washington DC</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ SPECIALTIES ═══════════════════ -->
-<section class="specs">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="eyebrow">Deep expertise</p><h2>Where we specialize</h2></div>
-      <p>Across our five-decade history, certain technical disciplines have become defining strengths. These are the areas where ECP delivers the most differentiated value.</p>
-    </div>
-    <div class="spec-grid fade-up">
-      <article class="spec">
-        <img class="spec-img" src="spec_wood.jpg" alt="Heavy timber wood structural framing">
-        <div class="spec-body">
-          <div class="tag">Technical specialty</div>
-          <h3>Wood Structural Systems</h3>
-          <p>From traditional heavy timber to modern engineered lumber, we have deep expertise in specifying, supplying, and detailing wood structural systems for commercial applications. Particularly strong in historic and restoration contexts where matching existing conditions matters.</p>
-          <div class="chips"><span>Heavy Timber</span><span>Glulam</span><span>LVL</span><span>Sash &amp; Window</span><span>Restoration</span></div>
-        </div>
-      </article>
-      <article class="spec">
-        <img class="spec-img" src="spec_jurisdiction.jpg" alt="Multi-jurisdictional construction planning">
-        <div class="spec-body">
-          <div class="tag">Technical specialty</div>
-          <h3>Multi-Jurisdictional Projects</h3>
-          <p>Operating across MD, DC, and WV means navigating three different code environments, permitting processes, and inspection jurisdictions simultaneously. We handle this in-house — no subcontracting the work to someone who doesn't know your project.</p>
-          <div class="chips"><span>Maryland Building Code</span><span>DC Construction Codes</span><span>WV Regulations</span><span>AHJ Coordination</span></div>
-        </div>
-      </article>
-      <article class="spec">
-        <img class="spec-img" src="spec_facility.jpg" alt="Commercial facility operations inspection">
-        <div class="spec-body">
-          <div class="tag">Technical specialty</div>
-          <h3>Nonresidential Facility Operations</h3>
-          <p>Commercial and institutional building operators rely on ECP for the operational side of building ownership — condition assessments, maintenance planning, and the engineering expertise to know when something needs attention before it becomes a liability.</p>
-          <div class="chips"><span>Condition Assessment</span><span>Maintenance Planning</span><span>Owner's Rep</span><span>Capital Planning</span></div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ FAQ ═══════════════════ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-head"><div><p class="eyebrow">Common questions</p><h2>Frequently asked questions</h2></div></div>
-    <div class="faq-grid">
-      <div>
-        <details>
-          <summary>What geographic area does ECP serve?</summary>
-          <div class="ans">We are licensed and regularly work in Maryland, Washington DC, and West Virginia. Our home base is Frederick, MD, and we serve clients throughout the greater Mid-Atlantic region. For projects outside these states, contact us — we can often find a path forward on a case-by-case basis.</div>
-        </details>
-        <details>
-          <summary>Do you work with residential projects?</summary>
-          <div class="ans">Our primary focus is commercial, institutional, and industrial construction. We do work on some residential projects where there is a significant structural or specialty component involved — particularly historic homes or large custom residential builds. Contact us to discuss your specific project.</div>
-        </details>
-        <details>
-          <summary>Can ECP serve as both product supplier and contractor on the same project?</summary>
-          <div class="ans">Yes — and this is actually one of our key advantages. When we both specify the products and manage the construction, there's no disconnect between what the specs call for and what gets installed. This reduces RFIs, substitution requests, and field conflicts significantly.</div>
-        </details>
-        <details>
-          <summary>How quickly can ECP mobilize on a new project?</summary>
-          <div class="ans">It depends on scope and our current workload, but we are a nimble team and can often engage within days for consulting and pre-construction work. For full GC or CM projects, typical lead time from contract execution to mobilization is two to four weeks. Call us to discuss your schedule.</div>
-        </details>
-        <details>
-          <summary>Is ECP insured and bonded?</summary>
-          <div class="ans">Yes. ECP carries general liability, workers' compensation, and professional liability insurance appropriate to the projects we take on. Certificates of insurance are available upon request and can be issued to meet your project's specific requirements.</div>
-        </details>
-        <details>
-          <summary>What size projects does ECP typically handle?</summary>
-          <div class="ans">We work across a wide range of project sizes — from individual product procurement and consulting engagements in the thousands of dollars, to full CM and GC contracts in the millions. Our team is sized to give each project personal attention regardless of contract value.</div>
-        </details>
-      </div>
-
-      <aside>
-        <div class="askbox">
-          <h3>Have a question not listed here?</h3>
-          <p>We're happy to answer any questions about our services, project experience, or how we might fit into your next project. Call us directly or send a message and we'll respond within one business day.</p>
-          <a class="btn btn-primary" href="#contact">Contact ECP →</a>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ CONTACT ═══════════════════ -->
-<section id="contact" style="border-top:1px solid var(--rule)">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-visual fade-up">
-        <div class="glowing-pin"></div>
-        <div class="cdetail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
-          <div><div class="l">Address</div><div class="v">5422 Mount Zion Road<br>Frederick, MD 21703</div></div>
-        </div>
-        <div class="cdetail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 3h4l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>
-          <div><div class="l">Phone</div><div class="v"><a href="tel:+13014739520">(301) 473-9520</a></div></div>
-        </div>
-        <div class="cdetail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
-          <div><div class="l">President</div><div class="v">Kurtis Barron</div></div>
-        </div>
-        <div class="cdetail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-          <div><div class="l">Business hours</div><div class="v">Monday – Friday, 8:00 AM – 5:00 PM</div></div>
-        </div>
-      </div>
-
-      <div class="form-card">
-        <p class="eyebrow">Get in touch</p>
-        <h3>Let's talk about your project</h3>
-        <p class="form-sub">Whether you have a defined scope or just a challenge you're trying to solve, we're happy to have a conversation. No obligation — just a direct talk with someone who knows construction.</p>
-        <form onsubmit="event.preventDefault();this.querySelector('.submit').textContent='Thanks — we\'ll be in touch'">
-          <div class="frow">
-            <div class="field"><label for="fn">First name</label><input id="fn" placeholder="John"></div>
-            <div class="field"><label for="ln">Last name</label><input id="ln" placeholder="Smith"></div>
-          </div>
-          <div class="field"><label for="em">Email address</label><input id="em" type="email" placeholder="john@company.com"></div>
-          <div class="field"><label for="ph">Phone number</label><input id="ph" type="tel" placeholder="(301) 555-0100"></div>
-          <div class="field"><label for="co">Company / organization</label><input id="co" placeholder="ABC Construction, LLC"></div>
-          <div class="field"><label for="sv">Service needed</label>
-            <select id="sv">
-              <option>Select a service…</option>
-              <option>Structural Engineering Consulting</option>
-              <option>General Contracting</option>
-              <option>Construction Management</option>
-              <option>Product Supply</option>
-              <option>Building Consulting</option>
-              <option>Estimating</option>
-            </select>
-          </div>
-          <div class="field"><label for="lo">Project location</label><input id="lo" placeholder="City, State"></div>
-          <div class="field"><label for="ds">Project description</label><textarea id="ds" placeholder="Tell us about your project — scope, timeline, key challenges, and anything else that helps us understand what you need."></textarea></div>
-          <button class="submit" type="submit">Send message</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 </main>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<!-- ═══════════════════ 5-COLUMN BOVIS FOOTER ═══════════════════ -->
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
+    <div class="foot-grid-5">
       <div class="foot-brand">
-        <b>Engineered Construction Products, Ltd.</b>
-        <small>ESTABLISHED 1975 · FREDERICK, MARYLAND</small>
-        <p>Engineering-first construction services and specialty products for the Mid-Atlantic region since 1975.</p>
-        <div class="ph">(301) 473-9520</div>
+        <b>ECP</b>
+        <small>ENGINEERING</small>
+        <p>A leading engineering, specialty procurement, and construction company delivering complex projects since 1975.</p>
+        <div class="foot-socials">
+          <a href="contact.html" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="contact.html" aria-label="YouTube">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#141619"/></svg>
+          </a>
+          <a href="contact.html" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+        </div>
       </div>
+
       <div>
-        <h4>Services</h4>
+        <h4>Quick Links</h4>
         <ul>
-          <li><a href="#services">Structural Engineering</a></li>
-          <li><a href="#services">General Contracting</a></li>
-          <li><a href="#services">Construction Management</a></li>
-          <li><a href="#services">Product Supply</a></li>
-          <li><a href="#services">Building Consulting</a></li>
-          <li><a href="#services">Estimating</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="services.html">Disciplines</a></li>
+          <li><a href="services.html#products">Capabilities</a></li>
         </ul>
       </div>
+
       <div>
-        <h4>Company</h4>
+        <h4>Capabilities</h4>
         <ul>
-          <li><a href="#about">About ECP</a></li>
-          <li><a href="#markets">Markets Served</a></li>
-          <li><a href="#why">Why Choose ECP</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="services.html#structural">Engineering</a></li>
+          <li><a href="services.html#products">Procurement</a></li>
+          <li><a href="services.html#contracting">Construction</a></li>
+          <li><a href="services.html#contracting">Project Management</a></li>
         </ul>
       </div>
+
       <div>
-        <h4>Contact</h4>
+        <h4>Resources</h4>
         <ul>
-          <li>5422 Mount Zion Road</li>
-          <li>Frederick, MD 21703</li>
-          <li>(301) 473-9520</li>
-          <li>Mon–Fri, 8AM–5PM</li>
-          <li><a href="#contact">Request a Quote →</a></li>
+          <li><a href="projects.html">Case Studies</a></li>
+          <li><a href="about.html#directory">Directory</a></li>
+          <li><a href="contact.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Bid Desk</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact Us</h4>
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Frederick, MD 21703, USA
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 3h4l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>
+            <a href="tel:+13014739520">+1 (301) 473-9520</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="contact.html">info@ecpltd.com</a>
+          </li>
         </ul>
       </div>
     </div>
+
     <div class="foot-rule">
-      <span>© 2026 Engineered Construction Products, Ltd. All rights reserved.</span>
-      <span>Licensed: MD General Contractor · DC CM #70101094 · WV Specialty Contractor · USDOT #897979</span>
+      <span>© 2026 ECP Engineering (Engineered Construction Products, Ltd.). All rights reserved.</span>
+      <span><a href="contact.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="contact.html">Terms of Use</a></span>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role="tab"]'));
-  function select(tab){
-    tabs.forEach(function(t){
-      var panel = document.getElementById(t.getAttribute('aria-controls'));
-      var on = (t === tab);
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      if(panel) panel.hidden = !on;
-    });
-  }
-  tabs.forEach(function(t, i){
-    t.addEventListener('click', function(){ select(t); });
-    t.addEventListener('keydown', function(e){
-      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if(!d) return;
-      e.preventDefault();
-      var next = tabs[(i + d + tabs.length) % tabs.length];
-      next.focus(); select(next);
-    });
-  });
-})();
-
-// Global & Timeline animations
-document.addEventListener("DOMContentLoaded", function() {
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  
-  // Timeline staggering
-  document.querySelectorAll('.tl-row').forEach(function(row, index) {
-    row.style.animationDelay = (index * 0.15) + 's';
-    observer.observe(row);
-  });
-
-  // Auto-apply fade-up to major elements and observe
-  var animSelector = '.svc, .step, .mkt, .quote, .spec, .sec-head, .statbox div, .hero-stats, .about-grid > div';
-  document.querySelectorAll(animSelector).forEach(function(el) {
-    el.classList.add('fade-up');
-  });
-
-  // Observe all fade-up elements so they trigger in-view
-  document.querySelectorAll('.fade-up').forEach(function(el) {
-    observer.observe(el);
-  });
-
-  // Counter animation
-  var countObserver = new IntersectionObserver(function(entries, obs) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        var target = parseInt(el.getAttribute('data-target'), 10);
-        var duration = 2000; // 2 seconds
-        var start = null;
-        function step(timestamp) {
-          if (!start) start = timestamp;
-          var progress = timestamp - start;
-          var current = Math.min(Math.floor((progress / duration) * target), target);
-          el.innerText = current;
-          if (progress < duration) {
-            window.requestAnimationFrame(step);
-          } else {
-            el.innerText = target;
-          }
-        }
-        window.requestAnimationFrame(step);
-        obs.unobserve(el);
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  document.querySelectorAll('.counter').forEach(function(el) {
-    countObserver.observe(el);
-  });
-});
-</script>
+<script src="main.js"></script>
 </body>
 </html>
