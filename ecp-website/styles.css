@@ -152,28 +152,32 @@ p { margin: 0 0 1em; }
   background: #F3F4F6;
 }
 
-/* ═══════════════════ SUBTLE GLASSY HEADER & NAVIGATION ═══════════════════ */
+/* ═══════════════════ WHITE HEADER & NAVIGATION ═══════════════════ */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.85);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
 }
 .topbar .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 76px;
   gap: 24px;
 }
 .brand {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  align-items: center;
   line-height: 1;
   text-decoration: none;
+}
+.brand-logo {
+  height: 50px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 .brand b {
   font-family: "Plus Jakarta Sans", sans-serif;
