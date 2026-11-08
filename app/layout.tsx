@@ -3,6 +3,8 @@ import "./globals.css";
 import Behaviors from "./_components/Behaviors";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ecpltd.com"),
+  robots: { index: true, follow: true },
   title: {
     default: "ECP Engineering | Engineered Construction Products, Ltd.",
     template: "%s",

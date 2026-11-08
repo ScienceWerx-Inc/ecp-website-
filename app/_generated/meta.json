@@ -1,32 +1,41 @@
 {
   "index": {
     "route": "/",
-    "title": "ECP Engineering | Engineered Construction Products, Ltd.",
-    "description": "Engineered Construction Products, Ltd. — structural engineering, general contracting, construction management and specialty product supply across Maryland, Washington DC and West Virginia since 1975.",
-    "themeColor": "#141619"
+    "title": "ECP Glazing &amp; Engineering | Commercial Architectural Glass, Curtain Wall &amp; Facade Systems (MD · DC · VA · WV)",
+    "description": "ECP (Engineered Construction Products, Ltd.) — Mid-Atlantic's premier commercial glazing contractor, architectural glass fabricator, unitized & stick curtain wall installer, and facade engineering partner serving MD, DC, VA & WV since 1975.",
+    "themeColor": "#141619",
+    "keywords": "commercial glazing contractor Maryland, architectural glass fabrication Frederick MD, curtain wall installation Washington DC, commercial storefront glass Virginia, blast-rated glazing systems, ASTM water infiltration testing, facade engineering design-assist, Kawneer YKK AP Viracon glazing subcontractor",
+    "canonical": "https://ecpltd.com/",
+    "ogTitle": "ECP Glazing & Engineering | Commercial Glass, Curtain Wall & Facade Systems",
+    "ogDescription": "In-house architectural glass & aluminum fabrication, CAD facade engineering, ASTM water filtration testing, and merit-shop commercial glazing across MD, DC, VA & WV since 1975.",
+    "ogImage": "/hero_glazing.jpg"
   },
   "about": {
     "route": "/about",
-    "title": "About &amp; Directory | ECP Engineering",
-    "description": "Learn about Engineered Construction Products, Ltd. (ECP) — founded in 1975 in Frederick, MD, led by President Kurtis Barron, licensed across MD, DC, and WV.",
-    "themeColor": "#141619"
+    "title": "About Our Frederick Glass Facility &amp; Team | ECP Glazing &amp; Engineering",
+    "description": "About ECP Glazing & Engineering (Engineered Construction Products, Ltd.) — founded in 1975 in Frederick, MD. In-house commercial glass & curtain wall fabrication, ASTM water testing, and licensed facade engineering across MD, DC, VA & WV.",
+    "themeColor": "#141619",
+    "keywords": "commercial glass fabricator Frederick MD, glazing contractor Maryland DC Virginia, Kurtis Barron ECP, curtain wall fabrication facility Frederick, Kawneer Viracon YKK AP partner"
   },
   "services": {
     "route": "/services",
-    "title": "Disciplines &amp; Capabilities | ECP Engineering",
-    "description": "Comprehensive structural engineering consulting, general contracting, construction management, and CSI Division 05, 06 & 08 specialty product supply by ECP Ltd.",
-    "themeColor": "#141619"
+    "title": "Glazing Systems, Glass Fabrication &amp; Facade Engineering | ECP Glazing &amp; Engineering",
+    "description": "Commercial glazing systems, unitized & stick curtain walls, in-house CNC glass & aluminum fabrication, ASTM water infiltration testing, and structural facade engineering by ECP Ltd.",
+    "themeColor": "#141619",
+    "keywords": "curtain wall systems Maryland, commercial glass fabrication Frederick MD, storefront glazing contractor DC, ASTM water filtration testing facade, CAD BIM shop drawings glazing, blast-rated windows Virginia"
   },
   "projects": {
     "route": "/projects",
-    "title": "Projects &amp; Markets | ECP Engineering",
-    "description": "Explore ECP Ltd.'s portfolio of over 2,500 commercial, civil, historic restoration, and institutional construction projects across Maryland, Washington DC, and West Virginia.",
-    "themeColor": "#141619"
+    "title": "Commercial Glass &amp; Curtain Wall Portfolio | ECP Glazing &amp; Engineering",
+    "description": "Explore ECP's portfolio of 2,500+ commercial glazing, unitized curtain wall, architectural glass storefront, blast-rated glazing, and historic window restoration projects across MD, DC, VA, and WV.",
+    "themeColor": "#141619",
+    "keywords": "commercial glazing portfolio Maryland, curtain wall projects Washington DC, architectural glass case studies Frederick MD, blast-rated window installation Virginia, historic window sash restoration"
   },
   "contact": {
     "route": "/contact",
-    "title": "Contact &amp; Bid Desk | ECP Engineering",
-    "description": "Contact Engineered Construction Products, Ltd. (ECP) in Frederick, MD. Request a project quote, invite ECP to bid, or schedule a structural engineering review.",
-    "themeColor": "#141619"
+    "title": "Division 08 Glazing Bid Desk &amp; Contact | ECP Glazing &amp; Engineering",
+    "description": "Contact ECP Glazing & Engineering in Frederick, MD. Request a Division 08 commercial glazing bid, curtain wall design-assist review, custom glass quote, or ASTM water infiltration test.",
+    "themeColor": "#141619",
+    "keywords": "commercial glass bid desk Frederick MD, curtain wall quote Maryland DC Virginia, Division 08 glazing estimator, architectural glass fabrication contact"
   }
 }

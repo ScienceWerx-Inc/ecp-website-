@@ -20,8 +20,29 @@ export function bodyHtml(name: PageName): string {
   return fs.readFileSync(p, "utf8");
 }
 
-/** Per-page <title>/description lifted from the source pages. */
+type PageMeta = {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+};
+
+/** Per-page <title>, description and SEO tags lifted from the source pages. */
 export function pageMetadata(name: PageName): Metadata {
-  const m = meta[name];
-  return { title: decode(m.title), description: decode(m.description) };
+  const m = meta[name] as PageMeta;
+  const out: Metadata = { title: decode(m.title), description: decode(m.description) };
+  if (m.keywords) out.keywords = decode(m.keywords);
+  if (m.canonical) out.alternates = { canonical: m.canonical };
+  if (m.ogTitle || m.ogDescription || m.ogImage) {
+    out.openGraph = {
+      type: "website",
+      ...(m.ogTitle ? { title: decode(m.ogTitle) } : {}),
+      ...(m.ogDescription ? { description: decode(m.ogDescription) } : {}),
+      ...(m.ogImage ? { images: [m.ogImage] } : {}),
+    };
+  }
+  return out;
 }
