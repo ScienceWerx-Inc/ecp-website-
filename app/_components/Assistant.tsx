@@ -172,7 +172,7 @@ export default function Assistant({ greeting }: { greeting: string }) {
 
       <button
         type="button"
-        className="ecp-chat__fab"
+        className={`ecp-chat__fab${open ? " ecp-chat__fab--open" : ""}`}
         aria-expanded={open}
         aria-label={open ? "Close chat" : "Ask ECP a question"}
         onClick={() => setOpen((o) => !o)}
@@ -180,9 +180,9 @@ export default function Assistant({ greeting }: { greeting: string }) {
         {open ? (
           "×"
         ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg>
+          </svg><span className="ecp-chat__fab-label">Ask ECP</span></>
         )}
       </button>
     </>

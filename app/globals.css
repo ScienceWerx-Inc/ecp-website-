@@ -1747,12 +1747,14 @@ a.proj-media { display: block; }
 /* ── "Ask ECP" chat assistant ─────────────────────────────────────────── */
 .ecp-chat__fab {
   position: fixed; right: 20px; bottom: 20px; z-index: 90;
-  width: 56px; height: 56px; border-radius: 50%; border: 0; cursor: pointer;
-  display: grid; place-items: center; font-size: 28px; line-height: 1;
+  height: 56px; min-width: 56px; padding: 0 22px 0 18px; border-radius: 999px; border: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 28px; line-height: 1;
   background: var(--crimson); color: #fff;
   box-shadow: 0 10px 30px rgba(20, 22, 25, 0.28);
   transition: background 0.2s, transform 0.2s;
 }
+.ecp-chat__fab-label { font-family: "Plus Jakarta Sans", sans-serif; font-size: 15px; font-weight: 700; }
+.ecp-chat__fab--open { padding: 0; width: 56px; }
 .ecp-chat__fab:hover { background: var(--crimson-hover); transform: translateY(-2px); }
 .ecp-chat__fab:focus-visible, .ecp-chat button:focus-visible, .ecp-chat textarea:focus-visible {
   outline: 2px solid var(--crimson-bright); outline-offset: 2px;
