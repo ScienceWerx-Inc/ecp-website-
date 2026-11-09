@@ -23,6 +23,8 @@ export interface SiteContent {
   stats: { value: string; label: string; blurb: string }[];
   projects: { title: string; category: string; description: string; image?: string }[];
   faqs: { q: string; a: string }[];
+  /** The chat assistant: shown unless turned off in MoreWerx › Admin › Website. */
+  assistant?: { enabled: boolean; greeting: string };
 }
 
 /**

@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Behaviors from "./_components/Behaviors";
+import Assistant from "./_components/Assistant";
+import { MOREWERX_API, getSiteContent } from "./_lib/site-content";
+
+const DEFAULT_GREETING =
+  "Hi! I'm ECP's assistant. Ask me about our engineering, construction and specialty product services — or leave your email and our team will get back to you.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ecpltd.com"),
@@ -19,11 +24,13 @@ export const viewport: Viewport = {
   themeColor: "#141619",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { assistant } = await getSiteContent();
+  const showAssistant = Boolean(MOREWERX_API) && assistant?.enabled !== false;
   return (
     <html lang="en">
       <head>
@@ -39,6 +46,7 @@ export default function RootLayout({
       <body>
         {children}
         <Behaviors />
+        {showAssistant && <Assistant greeting={assistant?.greeting || DEFAULT_GREETING} />}
       </body>
     </html>
   );
