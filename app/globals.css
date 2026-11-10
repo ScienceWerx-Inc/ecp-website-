@@ -15,7 +15,7 @@
   --dark-muted: #9CA3AF;
   --dark-line: rgba(255, 255, 255, 0.12);
 
-  --ink: #141619;
+  --ink: #36454F;
   --body: #4B5563;
   --muted: #6B7280;
 
@@ -385,7 +385,12 @@ p { margin: 0 0 1em; }
 }
 .hero-bovis h1 em {
   font-style: normal;
-  color: #FFFFFF;
+  color: var(--crimson);
+  background: #FFFFFF;
+  padding: 0 0.12em;
+  border-radius: 6px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 .hero-bovis p {
   margin-top: 20px;
