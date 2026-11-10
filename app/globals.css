@@ -387,9 +387,12 @@ p { margin: 0 0 1em; }
   font-style: normal;
   color: var(--crimson);
   text-transform: uppercase;
+  letter-spacing: 0.06em;
   -webkit-text-stroke: 4px #FFFFFF;
   text-stroke: 4px #FFFFFF;
   paint-order: stroke fill;
+  display: inline-block;
+  margin-top: 0.18em;
 }
 .hero-bovis p {
   margin-top: 20px;
