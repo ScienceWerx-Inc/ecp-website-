@@ -3,9 +3,8 @@ import "./globals.css";
 import Behaviors from "./_components/Behaviors";
 import Assistant from "./_components/Assistant";
 import { MOREWERX_API, getSiteContent } from "./_lib/site-content";
+import { ALASTAIR, GENERIC_GREETINGS } from "./_lib/alastair";
 
-const DEFAULT_GREETING =
-  "Hi! I'm ECP's assistant. Ask me about our engineering, construction and specialty product services, or leave your email and our team will get back to you.";
 
 /**
  * Where this site is served, canonical, og:url and shared blog links resolve
@@ -55,7 +54,15 @@ export default async function RootLayout({
       <body>
         {children}
         <Behaviors />
-        {showAssistant && <Assistant greeting={assistant?.greeting || DEFAULT_GREETING} />}
+        {showAssistant && (
+          <Assistant
+            // MoreWerx › Admin › Website wins when set; Alastair otherwise.
+            greeting={assistant?.greeting && !GENERIC_GREETINGS.includes(assistant.greeting) ? assistant.greeting : ALASTAIR.greeting}
+            name={assistant?.name || ALASTAIR.name}
+            title={assistant?.title || ALASTAIR.title}
+            avatarUrl={assistant?.avatarUrl || ALASTAIR.avatarUrl}
+          />
+        )}
       </body>
     </html>
   );

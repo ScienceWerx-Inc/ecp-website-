@@ -1755,6 +1755,7 @@ a.proj-media { display: block; }
   -webkit-tap-highlight-color: transparent;
 }
 .ecp-chat__fab-label { font-family: "Plus Jakarta Sans", sans-serif; font-size: 15px; font-weight: 700; }
+.ecp-chat__fab-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; margin-left: -10px; }
 .ecp-chat__fab--open { padding: 0; width: 56px; }
 .ecp-chat__fab:hover { background: var(--crimson-hover); transform: translateY(-2px); }
 .ecp-chat__fab:focus-visible, .ecp-chat button:focus-visible, .ecp-chat textarea:focus-visible {
@@ -1763,6 +1764,8 @@ a.proj-media { display: block; }
 .ecp-chat {
   position: fixed; right: 20px; bottom: calc(88px + env(safe-area-inset-bottom)); z-index: 200;
   width: 380px; height: min(560px, calc(100dvh - 120px));
+  /* It is a <section>: not the page sections' 80px padding. */
+  padding: 0;
   display: flex; flex-direction: column; overflow: hidden;
   background: var(--surface); color: var(--ink);
   border: 1px solid var(--line); border-radius: 16px;
@@ -1777,6 +1780,12 @@ a.proj-media { display: block; }
 }
 .ecp-chat__head strong { display: block; font-family: "Plus Jakarta Sans", sans-serif; font-size: 16px; }
 .ecp-chat__head span { display: block; font-size: 12px; color: var(--dark-muted); }
+.ecp-chat__head em { display: block; font-style: normal; font-size: 12.5px; font-weight: 600; color: var(--dark-ink); opacity: 0.85; }
+.ecp-chat__who { flex: 1; min-width: 0; }
+.ecp-chat__avatar {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.85); background: var(--surface);
+}
 .ecp-chat__x {
   flex-shrink: 0; width: 40px; height: 40px; display: grid; place-items: center;
   background: none; border: 0; border-radius: 8px; color: var(--dark-ink); font-size: 26px; line-height: 1; cursor: pointer;
@@ -1828,6 +1837,7 @@ a.proj-media { display: block; }
 @media (max-width: 640px) {
   .ecp-chat__fab { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); width: 56px; padding: 0; }
   .ecp-chat__fab-label { display: none; }
+  .ecp-chat__fab-avatar { width: 50px; height: 50px; margin: 0; }
   .ecp-chat__fab--open { display: none; }
   .ecp-chat {
     inset: 0; width: 100%; height: 100%; height: 100dvh; border: 0; border-radius: 0; box-shadow: none;

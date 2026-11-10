@@ -24,7 +24,7 @@ export interface SiteContent {
   projects: { title: string; category: string; description: string; image?: string }[];
   faqs: { q: string; a: string }[];
   /** The chat assistant: shown unless turned off in MoreWerx › Admin › Website. */
-  assistant?: { enabled: boolean; greeting: string };
+  assistant?: { enabled: boolean; greeting: string; name?: string; title?: string; avatarUrl?: string };
 }
 
 /**

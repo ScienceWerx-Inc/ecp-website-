@@ -2,15 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ECP_SLUG, MOREWERX_API } from "../_lib/site-content";
+import { ALASTAIR } from "../_lib/alastair";
 
 /**
- * The floating "Ask ECP" chat bubble. Talks to the company's assistant in
+ * The floating chat with Alastair, ECP's AI façade advisor (see ALASTAIR
+ * below). Talks to the company's assistant in
  * MoreWerx (POST /api/public/site/{slug}/assistant), which answers from ECP's
  * site content and blog.
  *
  * Onboarding: on first open the assistant asks a short intake, one question
- * at a time (name, email, company, role, industry, need, location, timeline,
- * phone — everything after email can be skipped). The answers, exactly as the
+ * at a time — what they're planning (his opening line), then name, email,
+ * company, role, industry, location, timeline, phone; everything after email
+ * can be skipped. The answers, exactly as the
  * visitor gave them, go to POST /api/public/site/{slug}/onboarding, which
  * makes them a lead in ECP's MoreWerx CRM with the page they came from. The
  * profile is then remembered on this device and sent with each question so
@@ -42,23 +45,28 @@ interface Step {
   placeholder: string;
   required?: boolean;
   chips?: string[];
+  /** Asked by the greeting itself, so it isn't posted again as its own bubble. */
+  inGreeting?: boolean;
 }
+
 
 const first = (name?: string) => (name ?? "").trim().split(/\s+/)[0] || "there";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const STEPS: Step[] = [
-  { key: "name", required: true, placeholder: "Your name", ask: () => "Before we start, what's your name?" },
+  {
+    // Alastair's opening line asks it; the chips answer it in one tap.
+    key: "need", inGreeting: true, placeholder: "Tell me about your project",
+    ask: () => "Are you planning a new curtain wall, specifying windows, or replacing glazing in an existing building?",
+    chips: ["A new curtain wall", "Specifying windows", "Replacing glazing in an existing building", "Something else"],
+  },
+  { key: "name", required: true, placeholder: "Your name", ask: () => "Good. So I can put you in touch with the right ECP specialist, what's your name?" },
   { key: "email", required: true, placeholder: "you@company.com", ask: (p) => `Nice to meet you, ${first(p.name)}! What's the best email to reach you?` },
   { key: "company", placeholder: "Company name", ask: () => "Which company are you with?", chips: ["Just me / property owner"] },
   { key: "title", placeholder: "e.g. Facilities Manager", ask: () => "What's your role there?" },
   {
     key: "industry", placeholder: "Your industry", ask: () => "Which industry are you in?",
     chips: ["Commercial real estate", "Industrial / manufacturing", "Government / public sector", "Healthcare", "Education", "Architecture / engineering", "Residential"],
-  },
-  {
-    key: "need", placeholder: "Tell us briefly", ask: () => "What can ECP help you with?",
-    chips: ["Structural engineering", "General contracting", "Construction management", "Specialty products (windows, timber)", "Historic restoration", "Just exploring"],
   },
   { key: "location", placeholder: "City, State", ask: () => "Where is the project located?" },
   {
@@ -136,7 +144,17 @@ function Rich({ text }: { text: string }) {
   return <>{blocks}</>;
 }
 
-export default function Assistant({ greeting }: { greeting: string }) {
+export default function Assistant({
+  greeting,
+  name = ALASTAIR.name,
+  title = ALASTAIR.title,
+  avatarUrl = ALASTAIR.avatarUrl,
+}: {
+  greeting: string;
+  name?: string;
+  title?: string;
+  avatarUrl?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
@@ -165,7 +183,7 @@ export default function Assistant({ greeting }: { greeting: string }) {
   }, [turns, step, draft, loaded]);
   // The first intake question, once, when a new visitor opens the chat.
   useEffect(() => {
-    if (open && loaded && step === 0 && !turns.some((t) => t.intake)) {
+    if (open && loaded && step === 0 && !STEPS[0].inGreeting && !turns.some((t) => t.intake)) {
       setTurns((t) => [...t, { role: "model", text: STEPS[0].ask({}), intake: true }]);
     }
   }, [open, loaded, step, turns]);
@@ -304,10 +322,13 @@ export default function Assistant({ greeting }: { greeting: string }) {
   return (
     <>
       {open && (
-        <section className="ecp-chat" role="dialog" aria-label="Ask ECP">
+        <section className="ecp-chat" role="dialog" aria-label={`${name}, ${title}`}>
           <header className="ecp-chat__head">
-            <div>
-              <strong>Ask ECP</strong>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ecp-chat__avatar" src={avatarUrl} alt="" width={44} height={44} />
+            <div className="ecp-chat__who">
+              <strong>{name}</strong>
+              <em>{title}</em>
               <span>
                 {profile ? (
                   <>
@@ -315,7 +336,7 @@ export default function Assistant({ greeting }: { greeting: string }) {
                     <button type="button" className="ecp-chat__link" onClick={startOver}>Not you?</button>
                   </>
                 ) : (
-                  "AI assistant · answers from our website"
+                  "AI advisor · answers from ECP's website"
                 )}
               </span>
             </div>
@@ -391,15 +412,17 @@ export default function Assistant({ greeting }: { greeting: string }) {
         type="button"
         className={`ecp-chat__fab${open ? " ecp-chat__fab--open" : ""}`}
         aria-expanded={open}
-        aria-label={open ? "Close chat" : "Ask ECP a question"}
+        aria-label={open ? "Close chat" : `Ask ${name}, ${title.replace(/^your\s+/i, "ECP's ")}`}
         onClick={() => setOpen((o) => !o)}
       >
         {open ? (
           "×"
         ) : (
-          <><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg><span className="ecp-chat__fab-label">Ask ECP</span></>
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ecp-chat__fab-avatar" src={avatarUrl} alt="" width={40} height={40} />
+            <span className="ecp-chat__fab-label">Ask {name}</span>
+          </>
         )}
       </button>
     </>
