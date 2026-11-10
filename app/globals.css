@@ -74,7 +74,7 @@ a { color: inherit; }
   color: #E5E7EB;
 }
 .eyebrow.on-dark::after {
-  background: var(--crimson-bright);
+  background: var(--crimson);
 }
 
 h1, h2, h3, h4 {
@@ -385,7 +385,7 @@ p { margin: 0 0 1em; }
 }
 .hero-bovis h1 em {
   font-style: normal;
-  color: var(--crimson-bright);
+  color: #FFFFFF;
 }
 .hero-bovis p {
   margin-top: 20px;

@@ -5,10 +5,10 @@ import Assistant from "./_components/Assistant";
 import { MOREWERX_API, getSiteContent } from "./_lib/site-content";
 
 const DEFAULT_GREETING =
-  "Hi! I'm ECP's assistant. Ask me about our engineering, construction and specialty product services — or leave your email and our team will get back to you.";
+  "Hi! I'm ECP's assistant. Ask me about our engineering, construction and specialty product services, or leave your email and our team will get back to you.";
 
 /**
- * Where this site is served — canonical, og:url and shared blog links resolve
+ * Where this site is served, canonical, og:url and shared blog links resolve
  * against it. NEXT_PUBLIC_SITE_URL wins; on Vercel, the project's production
  * domain (set automatically); else ecpltd.com.
  */
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description:
-    "Engineered Construction Products, Ltd. — structural engineering, general contracting, construction management and specialty product supply across Maryland, Washington DC and West Virginia since 1975.",
+    "Engineered Construction Products, Ltd., structural engineering, general contracting, construction management and specialty product supply across Maryland, Washington DC and West Virginia since 1975.",
 };
 
 export const viewport: Viewport = {
