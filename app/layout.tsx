@@ -7,8 +7,17 @@ import { MOREWERX_API, getSiteContent } from "./_lib/site-content";
 const DEFAULT_GREETING =
   "Hi! I'm ECP's assistant. Ask me about our engineering, construction and specialty product services — or leave your email and our team will get back to you.";
 
+/**
+ * Where this site is served — canonical, og:url and shared blog links resolve
+ * against it. NEXT_PUBLIC_SITE_URL wins; on Vercel, the project's production
+ * domain (set automatically); else ecpltd.com.
+ */
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://ecpltd.com");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ecpltd.com"),
+  metadataBase: new URL(SITE_URL),
   robots: { index: true, follow: true },
   title: {
     default: "ECP Engineering | Engineered Construction Products, Ltd.",
