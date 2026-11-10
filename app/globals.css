@@ -386,11 +386,10 @@ p { margin: 0 0 1em; }
 .hero-bovis h1 em {
   font-style: normal;
   color: var(--crimson);
-  background: #FFFFFF;
-  padding: 0 0.12em;
-  border-radius: 6px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  text-transform: uppercase;
+  -webkit-text-stroke: 4px #FFFFFF;
+  text-stroke: 4px #FFFFFF;
+  paint-order: stroke fill;
 }
 .hero-bovis p {
   margin-top: 20px;
