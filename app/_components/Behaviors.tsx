@@ -71,7 +71,7 @@ export default function Behaviors() {
       }
     }
 
-    // 3. Contact form -> MoreWerx company-scoped lead intake (best-effort).
+    // 3. Contact form -> MoreWerx: a prospect and a deal in ECP's CRM (best-effort).
     const contactForm = document.getElementById("ds")?.closest("form");
     if (contactForm) {
       const api = (process.env.NEXT_PUBLIC_MOREWERX_API || "").replace(/\/+$/, "");
@@ -83,9 +83,13 @@ export default function Behaviors() {
         const name = `${val("fn")} ${val("ln")}`.trim();
         const email = val("em");
         if (!name || !email) return;
-        const location = val("lo");
-        const message = [location ? `Location: ${location}` : "", val("ds")].filter(Boolean).join("\n");
-        // fire-and-forget; the form's own handler shows the acknowledgement
+        // A select left on its placeholder ("Select…") sends nothing.
+        const pick = (id: string) => {
+          const el = document.getElementById(id) as HTMLSelectElement | null;
+          return el && el.selectedIndex > 0 ? el.value.trim() : "";
+        };
+        // fire-and-forget; the form's own handler shows the acknowledgement.
+        // MoreWerx files it as a prospect with a deal named after the scope.
         void fetch(`${api}/api/public/site/${slug}/contact`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -94,8 +98,12 @@ export default function Behaviors() {
             email,
             phone: val("ph"),
             companyName: val("co"),
-            message,
+            location: val("lo"),
+            scope: pick("sv"),
+            timeline: pick("tl"),
+            message: val("ds"),
             pageUrl: window.location.href,
+            referrer: document.referrer || undefined,
           }),
         }).catch(() => {});
       });
