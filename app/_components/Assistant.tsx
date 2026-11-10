@@ -315,6 +315,9 @@ export default function Assistant({
   }
 
   const submit = (text: string) => (current ? answer(text) : ask(text));
+  // His face beside what he says.
+  // eslint-disable-next-line @next/next/no-img-element
+  const face = <img className="ecp-chat__face" src={avatarUrl} alt="" width={30} height={30} />;
   const chatting = !current;
   const showSuggestions = chatting && !turns.some((t) => !t.intake) && !sending;
   const chips = current ? [...(current.chips ?? []), ...(current.required ? [] : [SKIP])] : [];
@@ -346,13 +349,27 @@ export default function Assistant({
           </header>
 
           <div className="ecp-chat__list" ref={listRef} aria-live="polite">
-            <div className="ecp-chat__msg ecp-chat__msg--model"><Rich text={greeting} /></div>
-            {turns.map((t, i) => (
-              <div key={i} className={`ecp-chat__msg ecp-chat__msg--${t.role}`}>
-                {t.role === "model" ? <Rich text={t.text} /> : <p>{t.text}</p>}
+            <div className="ecp-chat__row">
+              {face}
+              <div className="ecp-chat__msg ecp-chat__msg--model"><Rich text={greeting} /></div>
+            </div>
+            {turns.map((t, i) =>
+              t.role === "model" ? (
+                <div key={i} className="ecp-chat__row">
+                  {/* One face per run of his messages (the greeting starts the first run). */}
+                  {i === 0 || turns[i - 1]?.role === "model" ? <span className="ecp-chat__face ecp-chat__face--gap" aria-hidden="true" /> : face}
+                  <div className="ecp-chat__msg ecp-chat__msg--model"><Rich text={t.text} /></div>
+                </div>
+              ) : (
+                <div key={i} className="ecp-chat__msg ecp-chat__msg--user"><p>{t.text}</p></div>
+              ),
+            )}
+            {sending && (
+              <div className="ecp-chat__row">
+                {face}
+                <div className="ecp-chat__msg ecp-chat__msg--model ecp-chat__typing" aria-label={`${name} is typing`}><i /><i /><i /></div>
               </div>
-            ))}
-            {sending && <div className="ecp-chat__msg ecp-chat__msg--model ecp-chat__typing" aria-label="Typing"><i /><i /><i /></div>}
+            )}
             {showSuggestions && (
               <div className="ecp-chat__suggest">
                 {SUGGESTIONS.map((s) => (

@@ -1800,6 +1800,10 @@ a.proj-media { display: block; }
 .ecp-chat__msg ul { margin: 4px 0; padding-left: 18px; }
 .ecp-chat__msg a { color: var(--crimson); font-weight: 600; text-decoration: underline; }
 .ecp-chat__msg--model { align-self: flex-start; background: var(--surface); border: 1px solid var(--line); color: var(--body); }
+.ecp-chat__row { display: flex; align-items: flex-end; gap: 8px; align-self: flex-start; max-width: 92%; }
+.ecp-chat__row .ecp-chat__msg { max-width: none; min-width: 0; }
+.ecp-chat__face { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); background: var(--surface); }
+.ecp-chat__face--gap { visibility: hidden; }
 .ecp-chat__msg--user { align-self: flex-end; background: var(--crimson); color: #fff; }
 .ecp-chat__suggest { display: flex; flex-direction: column; gap: 6px; }
 .ecp-chat__suggest button {
