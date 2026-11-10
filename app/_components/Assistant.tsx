@@ -77,13 +77,27 @@ export default function Assistant({ greeting }: { greeting: string }) {
     try {
       sessionStorage.setItem(STORE_KEY, JSON.stringify(turns.slice(-20)));
     } catch {}
-    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
+    // A new answer scrolls to its first line, so a long reply reads from the top.
+    const list = listRef.current;
+    const last = list?.lastElementChild as HTMLElement | null;
+    if (list && last && !sending && turns.at(-1)?.role === "model") {
+      list.scrollTo({ top: last.offsetTop - 12, behavior: "smooth" });
+    } else {
+      list?.scrollTo({ top: list.scrollHeight, behavior: "smooth" });
+    }
   }, [turns, sending]);
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    const phone = window.matchMedia("(max-width: 640px)").matches;
+    // Desktop: focus the input. Phone: don't pop the keyboard over the
+    // suggestions, and stop the page scrolling behind the full-screen chat.
+    if (open && !phone) inputRef.current?.focus();
+    if (open && phone) document.documentElement.classList.add("ecp-chat-lock");
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.documentElement.classList.remove("ecp-chat-lock");
+    };
   }, [open]);
 
   async function ask(q: string) {
