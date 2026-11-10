@@ -7,10 +7,39 @@ export const revalidate = 60;
 
 type Props = { params: Promise<{ slug: string }> };
 
+/**
+ * Open Graph / Twitter card tags so a post shared to LinkedIn or Facebook
+ * (MoreWerx › Blog › Share, posted through Zernio with this page's URL in the
+ * first comment) unfurls with its title, excerpt and hero image.
+ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(decodeURIComponent((await params).slug));
   if (!post) return { title: "Article not found | ECP Engineering" };
-  return { title: `${post.title} | ECP Engineering`, description: post.excerpt || undefined };
+  const path = `/blog/${encodeURIComponent(post.slug)}`;
+  const description = post.excerpt || undefined;
+  const images = post.imageUrl ? [{ url: post.imageUrl, alt: post.title }] : undefined;
+  return {
+    title: `${post.title} | ECP Engineering`,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      siteName: "ECP Engineering",
+      title: post.title,
+      description,
+      ...(images ? { images } : {}),
+      ...(/^\d{4}-\d{2}-\d{2}/.test(post.date) ? { publishedTime: post.date } : {}),
+      ...(post.author ? { authors: [post.author] } : {}),
+      ...(post.tags.length ? { tags: post.tags } : {}),
+    },
+    twitter: {
+      card: images ? "summary_large_image" : "summary",
+      title: post.title,
+      description,
+      ...(images ? { images } : {}),
+    },
+  };
 }
 
 export default async function BlogPost({ params }: Props) {
